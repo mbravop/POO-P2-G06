@@ -75,4 +75,14 @@ public class Cliente extends Persona{
         clienteEditar.setTelefono(telefonoNuevo);
         clienteEditar.setEmail(emailNuevo);
     }
+    
+    public static Cliente buscarCliente(ArrayList<Cliente> clientes, String cedula){
+        Cliente clienteEscogido = null;
+        for(Cliente c: clientes){
+            if(c.getCedula().equals(cedula)){
+                clienteEscogido = c;
+            }
+        }
+        return clienteEscogido;
+    }
 }

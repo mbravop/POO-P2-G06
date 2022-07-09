@@ -19,26 +19,64 @@ public class Cita {
     private Servicio servicio;
 
     //Constructor
-    public Cita(String fecha, String hora, Empleado empleado, Cliente cliente) {
+    public Cita(Cliente cliente, Empleado empleado, Servicio servicio, String fecha, String hora) {
         this.fecha = fecha;
         this.hora = hora;
         this.empleado = empleado;
         this.cliente = cliente;
+        this.servicio = servicio;
     }
 
-    //Metodos
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
     
-    public static void crearCita(ArrayList<Cita> citas, ArrayList<Empleado> empleados, ArrayList<Servicio> servicios){
+    
+    @Override
+    public String toString() {
+        String cadena = "Fecha: " + fecha + " Hora: "+ hora + " Empleado: " empleado.getCedula() +" "+ empleado.getNombre() + " Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " Servicio: " + servicio.getNombreServicio();
+        return cadena;
+    }
+    
+    
+    public static void mostrarCitas(ArrayList<Cita> citas){
+        for(Cita c: citas){
+            System.out.println(c.toString());
+        }
+    }
+    
+    public static void crearCita(ArrayList<Cliente> clientes, ArrayList<Cita> citas, ArrayList<Empleado> empleadosDisponibles, ArrayList<Servicio> servicios, String fecha, String hora){
      Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese fecha de la cita (dd/mm/aaaa): ");
-        String fecha = sc.nextLine();
-        System.out.println("Ingrese hora de la cita (hh:mm): ");
-        String hora = sc.nextLine();
+        System.out.println("Ingrese el numero de cedula del cliente");
+        String cedula = sc.nextLine();
+        Cliente clienteCedula = Cliente.buscarCliente(clientes, cedula);
         
-        Empleado.mostrarEmpleados(empleados);
+        System.out.println("Se muestran los empleados disponibles para la fecha y hora solicitada. ");
+        int i =0;
+        for(Empleado e: empleadosDisponibles){
+            
+            System.out.println((1+i)+" "+e.toString());
+            i++;
+        }
         
-        System.out.println("Seleccione : ");
-       // String fecha = sc.nextLine();  
+        System.out.println("Seleccione el numero del empleado para la cita: ");
+        int indiceEmpleado = sc.nextInt();
+        sc.nextLine();
+        
+        Empleado empleadoEscogido = empleadosDisponibles.get(indiceEmpleado-1);
+        
+        System.out.println("Se muestran los servicios disponibles ");
+        Servicio.mostrarServicios(servicios);
+        System.out.println("Seleccione el numero del servicio para la cita: ");
+        int indiceServicio = sc.nextInt();
+        sc.nextLine();
+        
+        Servicio servicioEscogido = servicios.get(indiceServicio-1);
+       
+        Cita citaNueva = new Cita(clienteCedula, empleadoEscogido, servicioEscogido, fecha, hora);
+        citas.add(citaNueva);
+        
     }
     
     public static ArrayList<Cita> verificarCitaFyH(ArrayList<Cita> citas, String fecha, String hora){
@@ -47,7 +85,6 @@ public class Cita {
         for (Cita c: citas){
             if (c.fecha.equals(fecha) && c.hora.equals(hora)){
                 citaNoDisponible.add(c);
-                
             }
         }
         return citaNoDisponible;

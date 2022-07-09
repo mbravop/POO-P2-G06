@@ -78,6 +78,26 @@ public class Empleado extends Persona {
         empleadoEliminar.estado = false;
     }
     
+    public static ArrayList<Empleado> mostrarEmpleadosDisponibles(ArrayList<Cita> citas, ArrayList<Empleado> empleados, String fecha, String hora){
+        ArrayList<Cita> citasNoDisponibles = Cita.verificarCitaFyH(citas,fecha,hora);
+        ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
+        int contador = 0;
+        for(int i=0;i<empleados.size();i++){
+            contador = 0;
+            for(int j=0;j<citasNoDisponibles.size();j++){
+                if(empleados.get(i).estado!=true || empleados.get(i).cedula == citasNoDisponibles.get(j).getEmpleado().getCedula()){
+                    contador++;
+                }
+                
+            }
+            if(contador==0){
+                empleadosDisponibles.add(empleados.get(i));
+            }
+               
+        }
+        return empleadosDisponibles;
+    }
+        
+}
     
 
-}

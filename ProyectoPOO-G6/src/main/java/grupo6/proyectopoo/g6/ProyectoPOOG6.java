@@ -29,6 +29,8 @@ public class ProyectoPOOG6 {
         empleados = new ArrayList<>();
         empleados.add(new Empleado("0908020508", "Carlos", "2840329","@espol.edu.ec", true));
         
+        citas = new ArrayList<>();
+        
     }
     
     public static void main(String[] args) {
@@ -131,11 +133,20 @@ public class ProyectoPOOG6 {
                     int opcion4;
                     do{
                         //Mostrar citas
+                        Cita.mostrarCitas(citas);
                         System.out.println(" 1. Crear cita ----- 2. Eliminar cita ----- 3. Consultar citas ----- 4. Menu Principal");
                         opcion4 = sc.nextInt();
                         switch (opcion4){
-                            case 1: 
+                            case 1:
+                                
+                                sc.nextLine();
                                 System.out.println("Ingrese la información para la nueva cita: ");
+                                System.out.println("Ingrese fecha de la cita (dd/mm/aaaa): ");
+                                String fecha = sc.nextLine();
+                                System.out.println("Ingrese hora de la cita (hh:mm): ");
+                                String hora = sc.nextLine();
+                                ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
+                                Cita.crearCita(clientes, citas, empleadosDisponibles, servicios, fecha, hora);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el numero de cita que desee eliminar");
