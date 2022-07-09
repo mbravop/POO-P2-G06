@@ -76,6 +76,7 @@ public class ProyectoPOOG6 {
                     int opcion2;
                     do {
                         // Método mostrar empleados
+                        System.out.println("   CEDULA ----- NOMBRE ----- TELEFONO ----- EMAIL ----- ESTADO");
                         Empleado.mostrarEmpleados(empleados);
                         System.out.println(" 1. Agregar empleado ----- 2. Editar empleado ----- 3. Eliminar empleado ----- 4. Menu Principal");
                         opcion2 = sc.nextInt();

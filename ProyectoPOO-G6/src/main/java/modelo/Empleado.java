@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author mbravop
+ * @author mbravop 
  */
 public class Empleado extends Persona {
 
@@ -22,7 +22,7 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + "     "+estado;
     }
 
     public static void mostrarEmpleados(ArrayList<Empleado> empleados) {
