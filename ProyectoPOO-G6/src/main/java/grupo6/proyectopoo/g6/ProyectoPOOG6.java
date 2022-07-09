@@ -20,6 +20,11 @@ public class ProyectoPOOG6 {
         Persona representanteprueba = new Persona("cedula","Dereck","0000","@gye");
         clientes = new ArrayList<>();
         clientes.add(new Cliente(representanteprueba,"0987654321","Mauricio","12345", "@espol"));
+        
+        
+        servicios= new ArrayList<>();
+        servicios.add(new Servicio("Terapia de Lenguaje",60,30.00,true));
+        servicios.add(new Servicio("Terapia de Psicopedagógica",45,40.00,true));
     }
     
     public static void main(String[] args) {
@@ -35,7 +40,9 @@ public class ProyectoPOOG6 {
                 case 1: // SERVICIOS
                     int opcion1;
                     do {
-                        //Método mostrar servicios
+                        System.out.println("L I S T A D O   D E   S E R V I C I O S");
+                        //Metodo mostrar servicios
+                        Servicio.mostrarServicios(servicios);
                         System.out.println(" 1. Agregar Servicios ----- 2. Editar Servicios ----- 3. Eliminar Servicios ----- 4. Menu Principal");
                         opcion1 = sc.nextInt();
                         switch (opcion1) {

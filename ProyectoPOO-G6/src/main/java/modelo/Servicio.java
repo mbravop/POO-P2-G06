@@ -4,10 +4,8 @@
  */
 package modelo;
 
-/**
- *
- * @author mbravop
- */
+import java.util.ArrayList;
+
 public class Servicio {
     private String nombreServicio;
     private int duracion;
@@ -24,12 +22,15 @@ public class Servicio {
     public int getDuracion() {
         return duracion;
     }
+
+    @Override
+    public String toString() {
+        return nombreServicio + "     " + duracion + "     " + precio + "     " + estado;
+    }
     
-    public String mostrarServicios(){
-        if (estado){
-            return "Servicio=" + nombreServicio + ", duracion=" + duracion +"minutos, precio=" + precio + ", estado= Activo";
-        } else {
-            return "Servicio=" + nombreServicio + ", duracion=" + duracion +"minutos, precio=" + precio + ", estado= Inactivo";
+    public static void mostrarServicios(ArrayList<Servicio> servicios){
+        for(int i=0; i < servicios.size(); i++){
+            System.out.println((i+1)+". "+ servicios.get(i).toString());
         }
     }
     
