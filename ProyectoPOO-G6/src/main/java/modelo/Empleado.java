@@ -77,5 +77,7 @@ public class Empleado extends Persona {
         Empleado empleadoEliminar = empleados.get(indiceEliminar - 1);
         empleadoEliminar.estado = false;
     }
+    
+    
 
 }
