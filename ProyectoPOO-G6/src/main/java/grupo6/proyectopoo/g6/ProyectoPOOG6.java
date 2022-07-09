@@ -22,7 +22,7 @@ public class ProyectoPOOG6 {
         clientes.add(new Cliente(representanteprueba,"0987654321","Mauricio","12345", "@espol"));
         
         
-        servicios= new ArrayList<>();
+        servicios = new ArrayList<>();
         servicios.add(new Servicio("Terapia de Lenguaje",60,30.00,true));
         servicios.add(new Servicio("Terapia de Psicopedagógica",45,40.00,true));
     }
@@ -48,12 +48,19 @@ public class ProyectoPOOG6 {
                         switch (opcion1) {
                             case 1:
                                 System.out.println("Ingrese la información del servicio");
+                                Servicio.agregarServicio(servicios);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el número del servicio a editar");
+                                int editar = sc.nextInt();
+                                sc.nextLine();
+                                Servicio.editarServicio(editar, servicios);
                                 break;
                             case 3:
                                 System.out.println("Ingrese el número del servicio a eliminar");
+                                int eliminar = sc.nextInt();
+                                sc.nextLine();
+                                Servicio.eliminarServicio(eliminar, servicios);
                                 break;
                             default:
                                 System.out.println("Volviendo... \n");
