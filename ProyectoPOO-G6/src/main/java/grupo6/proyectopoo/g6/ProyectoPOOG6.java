@@ -5,12 +5,27 @@
 
 package grupo6.proyectopoo.g6;
 import java.util.Scanner;
+import modelo.*;
+import java.util.ArrayList;
 
 public class ProyectoPOOG6 {
-
+    
+    public static ArrayList<Cliente> clientes;
+    public static ArrayList<Servicio> servicios;
+    public static ArrayList<Empleado> empleados;
+    public static ArrayList<Cita> citas;
+    public static ArrayList<Atencion> atenciones;
+    
+    public static void inicializarSistema(){
+        Persona representanteprueba = new Persona("cedula","Dereck","0000","@gye");
+        clientes = new ArrayList<>();
+        clientes.add(new Cliente(representanteprueba,"0987654321","Mauricio","12345", "@espol"));
+    }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
+        inicializarSistema();
         do {
             System.out.println("M E N U  P R I N C I P A L");
             System.out.println(" 1. Servicios \n 2. Empleados \n 3. Clientes \n 4. Citas  \n 5. Atenciones  \n 6. Salir");
@@ -65,7 +80,9 @@ public class ProyectoPOOG6 {
                 case 3: // CLIENTES
                     int opcion3;
                     do{
+                        System.out.println("   CEDULA ----- NOMBRE ----- TELEFONO ----- EMAIL");
                         //Metodo mostrar clientes
+                        Cliente.mostrarClientes(clientes);
                         System.out.println(" 1. Agregar cliente ----- 2. Editar cliente ----- 3. Menu Principal");
                         opcion3 = sc.nextInt();
                         switch (opcion3) {

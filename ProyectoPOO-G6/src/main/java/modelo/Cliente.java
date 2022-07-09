@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-
+import java.util.ArrayList;
 /**
  *
  * @author mbravop
@@ -11,10 +11,23 @@ package modelo;
 public class Cliente extends Persona{
     //atributo
     private Persona datosRepresentante;
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    public Cliente(Persona datosRepresentante, String cedula, String nombre, String telefono, String email) {
+        super(cedula, nombre, telefono, email);
+        this.datosRepresentante = datosRepresentante;
+    }
     
+
     //metodos
-    public void mostrarClientes(){
-        
+    public static void mostrarClientes(ArrayList<Cliente> clientes){
+        for(int i=0; i < clientes.size(); i++){
+            System.out.println((i+1)+". "+ clientes.get(i).toString());
+        }
     }
     
     public void agregarCliente(){
