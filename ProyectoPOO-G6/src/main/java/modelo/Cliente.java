@@ -8,6 +8,20 @@ package modelo;
  *
  * @author mbravop
  */
-public class Cliente {
+public class Cliente extends Persona{
+    //atributo
+    private Persona datosRepresentante;
     
+    //metodos
+    public void mostrarClientes(){
+        
+    }
+    
+    public void agregarCliente(){
+        
+    }
+    
+    public void editarCliente(String nombre, String telefono, String email){
+        
+    }
 }
