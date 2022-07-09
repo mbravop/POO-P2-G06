@@ -17,20 +17,21 @@ public class Cliente extends Persona{
     public String toString() {
         return super.toString();
     }
-
+    
+    //Constructor
     public Cliente(Persona datosRepresentante, String cedula, String nombre, String telefono, String email) {
         super(cedula, nombre, telefono, email);
         this.datosRepresentante = datosRepresentante;
     }
     
 
-    //metodos
+    //Método Mostrar Clientes
     public static void mostrarClientes(ArrayList<Cliente> clientes){
         for(int i=0; i < clientes.size(); i++){
             System.out.println((i+1)+". "+ clientes.get(i).toString());
         }
     }
-    
+    //Método Agregar Cliente
     public static void agregarCliente(ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos Cliente
@@ -51,14 +52,15 @@ public class Cliente extends Persona{
         String telefonoR = sc.nextLine();
         System.out.println("Ingrese el email del representante: ");
         String emailR = sc.nextLine();
-        
+        //Agregar Cliente
         Persona representante= new Persona(cedulaR,nombreR,telefonoR,emailR);
         Cliente clienteNuevo = new Cliente(representante, cedula,nombre,telefono,email);
         clientes.add(clienteNuevo);
     }
-    
+    //Método Editar Cliente
     public static void editarCliente(int indiceEditar, ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
+        //Datos a cambiar
         Cliente clienteEditar = clientes.get(indiceEditar-1);
         System.out.println("Ingrese la información corregida");
         System.out.println("Nombre: ");
@@ -68,7 +70,7 @@ public class Cliente extends Persona{
         System.out.println("Email: ");
         String emailNuevo = sc.nextLine();
         
-
+        //Actualizar Cliente
         clienteEditar.setNombre(nombreNuevo);
         clienteEditar.setTelefono(telefonoNuevo);
         clienteEditar.setEmail(emailNuevo);
