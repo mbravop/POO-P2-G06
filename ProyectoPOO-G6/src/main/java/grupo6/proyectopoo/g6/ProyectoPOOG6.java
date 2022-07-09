@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class ProyectoPOOG6 {
     
-    public static ArrayList<Cliente> clientes;
     public static ArrayList<Servicio> servicios;
     public static ArrayList<Empleado> empleados;
+    public static ArrayList<Cliente> clientes;
     public static ArrayList<Cita> citas;
     public static ArrayList<Atencion> atenciones;
     

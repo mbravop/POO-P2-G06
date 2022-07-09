@@ -61,8 +61,6 @@ public class Cliente extends Persona{
         Scanner sc = new Scanner(System.in);
         Cliente clienteEditar = clientes.get(indiceEditar-1);
         System.out.println("Ingrese la información corregida");
-        System.out.println("Cedula: ");
-        String cedulaNueva = sc.nextLine();
         System.out.println("Nombre: ");
         String nombreNuevo = sc.nextLine();
         System.out.println("Telefono: ");
@@ -70,7 +68,7 @@ public class Cliente extends Persona{
         System.out.println("Email: ");
         String emailNuevo = sc.nextLine();
         
-        clienteEditar.setCedula(cedulaNueva);
+
         clienteEditar.setNombre(nombreNuevo);
         clienteEditar.setTelefono(telefonoNuevo);
         clienteEditar.setEmail(emailNuevo);
