@@ -102,9 +102,13 @@ public class ProyectoPOOG6 {
                         switch (opcion3) {
                             case 1:
                                 System.out.println("Ingrese la información del cliente");
+                                Cliente.agregarCliente(clientes);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el número del cliente a editar");
+                                int editar = sc.nextInt();
+                                sc.nextLine();
+                                Cliente.editarCliente(editar, clientes);
                                 break;
                         }
                     }while(opcion3 > 0 && opcion3 < 3);
