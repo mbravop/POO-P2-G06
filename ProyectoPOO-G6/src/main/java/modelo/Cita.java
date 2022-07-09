@@ -8,6 +8,7 @@ package modelo;
  *
  * @author mbravop
  */
-public class Cita {
+public class Cita 
+{
     
 }

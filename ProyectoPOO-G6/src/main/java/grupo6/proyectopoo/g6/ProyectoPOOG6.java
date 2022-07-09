@@ -25,6 +25,10 @@ public class ProyectoPOOG6 {
         servicios = new ArrayList<>();
         servicios.add(new Servicio("Terapia de Lenguaje",60,30.00,true));
         servicios.add(new Servicio("Terapia de Psicopedagógica",45,40.00,true));
+        
+        empleados = new ArrayList<>();
+        empleados.add(new Empleado("0908020508", "Carlos", "2840329","@espol.edu.ec", true));
+        
     }
     
     public static void main(String[] args) {
@@ -72,17 +76,25 @@ public class ProyectoPOOG6 {
                     int opcion2;
                     do {
                         // Método mostrar empleados
+                        Empleado.mostrarEmpleados(empleados);
                         System.out.println(" 1. Agregar empleado ----- 2. Editar empleado ----- 3. Eliminar empleado ----- 4. Menu Principal");
                         opcion2 = sc.nextInt();
                         switch (opcion2) {
                             case 1:
                                 System.out.println("Ingrese la información del empleado");
+                                Empleado.agregarEmpleado(empleados);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el número del empleado a editar");
+                                int editar = sc.nextInt();
+                                sc.nextLine();
+                                Empleado.editarEmpleado(editar, empleados);
                                 break;
                             case 3:
                                 System.out.println("Ingrese el número del empleado a eliminar");
+                                int eliminar = sc.nextInt();
+                                sc.nextLine();
+                                Empleado.eliminarEmpleado(eliminar, empleados);
                                 break;
                             default:
                                 System.out.println("Volviendo... \n");
