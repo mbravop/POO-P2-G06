@@ -4,10 +4,17 @@
  */
 package modelo;
 
-/**
- *
- * @author mbravop
- */
 public class Atencion {
+    private Cliente cliente;
+    private Empleado empleado;
+    private Servicio servicio;
     
-}
+    public void registrarAtencion(String cedula, int duracion, String nombreEmpleado){
+        
+    }
+    
+    public String consultarAtencion(String buscador){
+        return "";
+    }
+    
+ }
