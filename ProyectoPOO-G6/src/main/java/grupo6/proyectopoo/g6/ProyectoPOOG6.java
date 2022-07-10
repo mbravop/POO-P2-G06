@@ -138,7 +138,6 @@ public class ProyectoPOOG6 {
                         opcion4 = sc.nextInt();
                         switch (opcion4){
                             case 1:
-                                
                                 sc.nextLine();
                                 System.out.println("Ingrese la información para la nueva cita: ");
                                 System.out.println("Ingrese fecha de la cita (dd/mm/aaaa): ");
@@ -146,7 +145,8 @@ public class ProyectoPOOG6 {
                                 System.out.println("Ingrese hora de la cita (hh:mm): ");
                                 String hora = sc.nextLine();
                                 ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
-                                Cita.crearCita(clientes, citas, empleadosDisponibles, servicios, fecha, hora);
+                                ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
+                                Cita.crearCita(clientes, citas, empleadosDisponibles, serviciosDisponibles, fecha, hora);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el numero de cita que desee eliminar");

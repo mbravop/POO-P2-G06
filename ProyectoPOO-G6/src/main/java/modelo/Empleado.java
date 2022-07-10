@@ -25,6 +25,11 @@ public class Empleado extends Persona {
         return super.toString() + "     "+estado;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+    
+    
     public static void mostrarEmpleados(ArrayList<Empleado> empleados) {
         for (int i = 0; i < empleados.size(); i++) {
             System.out.println((i + 1) + ". " + empleados.get(i).toString());
@@ -81,16 +86,23 @@ public class Empleado extends Persona {
     public static ArrayList<Empleado> mostrarEmpleadosDisponibles(ArrayList<Cita> citas, ArrayList<Empleado> empleados, String fecha, String hora){
         ArrayList<Cita> citasNoDisponibles = Cita.verificarCitaFyH(citas,fecha,hora);
         ArrayList<Empleado> empleadosDisponibles = new ArrayList<>();
+        
+        int falso = 0;
         int contador = 0;
-        for(int i=0;i<empleados.size();i++){
-            contador = 0;
-            for(int j=0;j<citasNoDisponibles.size();j++){
-                if(empleados.get(i).estado!=true || empleados.get(i).cedula == citasNoDisponibles.get(j).getEmpleado().getCedula()){
+        
+        for(int i=0; i<empleados.size(); i++){
+            falso = 0;
+            contador =0;
+            if(empleados.get(i).isEstado()==false){
+                    falso++;
+                }
+            for(int j=0; j< citasNoDisponibles.size(); j++){
+                
+                if(empleados.get(i).getCedula().equals(citasNoDisponibles.get(j).getEmpleado().getCedula())){
                     contador++;
                 }
-                
             }
-            if(contador==0){
+            if(falso==0 && contador ==0){
                 empleadosDisponibles.add(empleados.get(i));
             }
                

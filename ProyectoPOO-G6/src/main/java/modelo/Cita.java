@@ -35,7 +35,7 @@ public class Cita {
     
     @Override
     public String toString() {
-        String cadena = "Fecha: " + fecha + " Hora: "+ hora + " Empleado: " empleado.getCedula() +" "+ empleado.getNombre() + " Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " Servicio: " + servicio.getNombreServicio();
+        String cadena = "Fecha: " + fecha + " Hora: "+ hora + " Empleado: " + empleado.getCedula() +" "+ empleado.getNombre() + " Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " Servicio: " + servicio.getNombreServicio();
         return cadena;
     }
     

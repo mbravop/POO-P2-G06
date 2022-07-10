@@ -92,4 +92,14 @@ public class Servicio {
         Servicio servicioEliminar = servicios.get(indiceEliminar - 1);
         servicioEliminar.estado = false;
     }
+    
+    public static ArrayList<Servicio> serviciosDisponibles(ArrayList<Servicio> servicios){
+        ArrayList <Servicio> serviciosDisponibles = new ArrayList<>();
+        for(Servicio s: servicios){
+            if(s.estado){
+                serviciosDisponibles.add(s);
+            }
+        }
+        return serviciosDisponibles;
+    }
 }
