@@ -90,5 +90,25 @@ public class Cita {
         return citaNoDisponible;
         
     }
-  
+    
+    
+    public static void eliminarCita(String cedula, ArrayList<Cita>citas){
+        ArrayList<Cita> citaPersona = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int contador = 0;
+        for (Cita c: citas){
+            if (c.cliente.getCedula().equals(cedula)){
+                citaPersona.add(c);
+                System.out.println((1+contador)+ ". "+c);
+                contador +=1;
+            }
+        }
+        System.out.println("Qué cita de la lista desea eliminar?");
+        int indiceEliminar = sc.nextInt();
+        sc.nextLine();
+        citas.remove(citaPersona.get(indiceEliminar-1));
+        citaPersona.remove(indiceEliminar -1);
+        
+    }        
+     
 }

@@ -136,9 +136,9 @@ public class ProyectoPOOG6 {
                         Cita.mostrarCitas(citas);
                         System.out.println(" 1. Crear cita ----- 2. Eliminar cita ----- 3. Consultar citas ----- 4. Menu Principal");
                         opcion4 = sc.nextInt();
+                        sc.nextLine();
                         switch (opcion4){
                             case 1:
-                                sc.nextLine();
                                 System.out.println("Ingrese la información para la nueva cita: ");
                                 System.out.println("Ingrese fecha de la cita (dd/mm/aaaa): ");
                                 String fecha = sc.nextLine();
@@ -149,7 +149,10 @@ public class ProyectoPOOG6 {
                                 Cita.crearCita(clientes, citas, empleadosDisponibles, serviciosDisponibles, fecha, hora);
                                 break;
                             case 2:
-                                System.out.println("Ingrese el numero de cita que desee eliminar");
+                                System.out.println("Ingrese el numero de cedula del cliente");
+                                String cedula = sc.nextLine();
+                                Cita.eliminarCita(cedula, citas);
+                                
                                 break;
                             case 3:
                                 System.out.println("Ingrese la fecha para consultar las citas");
