@@ -30,7 +30,10 @@ public class Servicio {
     public String getNombreServicio() {
         return nombreServicio;
     }
-    
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
 
     @Override
     public String toString() {

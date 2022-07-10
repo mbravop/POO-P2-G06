@@ -51,6 +51,7 @@ public class ProyectoPOOG6 {
                         Servicio.mostrarServicios(servicios);
                         System.out.println(" 1. Agregar Servicios ----- 2. Editar Servicios ----- 3. Eliminar Servicios ----- 4. Menu Principal");
                         opcion1 = sc.nextInt();
+                        sc.nextLine();
                         switch (opcion1) {
                             case 1:
                                 System.out.println("Ingrese la información del servicio");
@@ -82,6 +83,7 @@ public class ProyectoPOOG6 {
                         Empleado.mostrarEmpleados(empleados);
                         System.out.println(" 1. Agregar empleado ----- 2. Editar empleado ----- 3. Eliminar empleado ----- 4. Menu Principal");
                         opcion2 = sc.nextInt();
+                        sc.nextLine();
                         switch (opcion2) {
                             case 1:
                                 System.out.println("Ingrese la información del empleado");
@@ -114,6 +116,7 @@ public class ProyectoPOOG6 {
                         Cliente.mostrarClientes(clientes);
                         System.out.println(" 1. Agregar cliente ----- 2. Editar cliente ----- 3. Menu Principal");
                         opcion3 = sc.nextInt();
+                        sc.nextLine();
                         switch (opcion3) {
                             case 1:
                                 System.out.println("Ingrese la información del cliente");
@@ -133,7 +136,7 @@ public class ProyectoPOOG6 {
                     int opcion4;
                     do{
                         //Mostrar citas
-                        Cita.mostrarCitas(citas);
+                        //Cita.mostrarCitas(citas);
                         System.out.println(" 1. Crear cita ----- 2. Eliminar cita ----- 3. Consultar citas ----- 4. Menu Principal");
                         opcion4 = sc.nextInt();
                         sc.nextLine();
@@ -155,7 +158,9 @@ public class ProyectoPOOG6 {
                                 
                                 break;
                             case 3:
-                                System.out.println("Ingrese la fecha para consultar las citas");
+                                System.out.println("Ingrese la fecha(dd/mm/aaaa) para consultar las citas");
+                                String fechaConsultada= sc.nextLine();
+                                Cita.consultarCita(fechaConsultada, citas);
                                 break;
                             default:
                                 System.out.println("Volviendo...");
@@ -168,6 +173,7 @@ public class ProyectoPOOG6 {
                     do{
                         System.out.println(" 1. Registrar atencion \n 2. Consultar atención \n 3. Menu Principal");
                         opcion5 = sc.nextInt();
+                        sc.nextLine();
                         switch(opcion5){
                             case 1:
                                 System.out.println("Ingrese información de la atención realizada");

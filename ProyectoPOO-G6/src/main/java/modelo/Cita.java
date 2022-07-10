@@ -31,7 +31,14 @@ public class Cita {
         return empleado;
     }
 
-    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+     
     
     @Override
     public String toString() {
@@ -109,6 +116,18 @@ public class Cita {
         citas.remove(citaPersona.get(indiceEliminar-1));
         citaPersona.remove(indiceEliminar -1);
         
-    }        
+    }
+    
+    public static void consultarCita(String fecha, ArrayList<Cita> citas){
+        int contador= 0;
+        for (Cita c: citas){
+            if (c.fecha.equals(fecha)){
+                System.out.println((1+contador)+". "+c);
+                contador++;
+            }
+        }
+        
+        
+    }
      
 }
