@@ -31,6 +31,8 @@ public class ProyectoPOOG6 {
         
         citas = new ArrayList<>();
         
+        atenciones = new ArrayList<>();
+        
     }
     
     public static void main(String[] args) {
@@ -171,12 +173,19 @@ public class ProyectoPOOG6 {
                 case 5: // ATENCIONES
                     int opcion5;
                     do{
+                        if(atenciones.size()>0){
+                            for(Atencion a: atenciones){
+                            System.out.println(a);
+                        }
+                        }
                         System.out.println(" 1. Registrar atencion \n 2. Consultar atención \n 3. Menu Principal");
                         opcion5 = sc.nextInt();
                         sc.nextLine();
                         switch(opcion5){
                             case 1:
-                                System.out.println("Ingrese información de la atención realizada");
+                                System.out.println("Ingrese cédula del cliente: ");
+                                String cedula = sc.nextLine();
+                                Atencion.registrarAtencion(atenciones, citas, cedula);
                                 break;
                             case 2:
                                 System.out.println("Ingrese información para la consulta");
