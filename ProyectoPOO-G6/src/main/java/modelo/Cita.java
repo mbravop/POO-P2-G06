@@ -38,7 +38,11 @@ public class Cita {
     public Servicio getServicio() {
         return servicio;
     }
-     
+
+    public String getFecha() {
+        return fecha;
+    }
+    
     
     @Override
     public String toString() {

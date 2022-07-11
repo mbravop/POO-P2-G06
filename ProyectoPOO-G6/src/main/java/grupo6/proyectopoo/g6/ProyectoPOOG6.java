@@ -190,7 +190,9 @@ public class ProyectoPOOG6 {
                                 Atencion.registrarAtencion(atenciones, citas, cedula);
                                 break;
                             case 2:
-                                System.out.println("Ingrese información para la consulta");
+                                //System.out.println("Ingrese información para la consulta");
+                                Atencion.consultarAtencion(atenciones);
+                                System.out.println("Finalizando metodo consultarAtencion");
                                 break;
                             default:
                                 System.out.println("Volviendo...\n");

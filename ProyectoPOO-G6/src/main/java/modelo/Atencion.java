@@ -14,6 +14,11 @@ public class Atencion {
         this.cita= cita;
     }
 
+    public Cita getCita() {
+        return cita;
+    }
+    
+
     @Override
     public String toString() {
         return "Atencion{" + "cita=" + cita + '}';
@@ -50,8 +55,19 @@ public class Atencion {
         atenciones.add(atencionRealizada);
     }
     
-    public static void consultarAtencion(String buscador, ArrayList<Atencion> atenciones){
-                  
+    public static void consultarAtencion(ArrayList<Atencion> atenciones){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Ingrese una fecha(dd/mm/aaaa), su cedula o la cedula del empleado que lo atendio:");
+        String buscador= sc.nextLine();
+        for(int i=0; i<atenciones.size();i++){
+            Atencion atencion= atenciones.get(i);
+            String cedula= atencion.getCita().getCliente().getCedula();
+            String fecha= atencion.getCita().getFecha();
+            String cedulaEmpleado= atencion.getCita().getEmpleado().getCedula();
+            if (buscador.equals(cedula) || buscador.equals(fecha) || buscador.equals(cedulaEmpleado)){
+                System.out.println(atencion);
+            }
+        }
     }
-    
- }
+}
+ 
