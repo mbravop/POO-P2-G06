@@ -72,8 +72,9 @@ public class Atencion {
         
     }
     
-    public static void consultarAtencion(ArrayList<Atencion> atenciones){
+    public static ArrayList<Atencion> consultarAtencion(ArrayList<Atencion> atenciones){
         Scanner sc= new Scanner(System.in);
+        ArrayList<Atencion> atencionesBusqueda = new ArrayList<Atencion>();
         System.out.println("Ingrese una fecha(dd/mm/aaaa), su cedula o la cedula del empleado que lo atendio:");
         String buscador= sc.nextLine();
         for(int i=0; i<atenciones.size();i++){
@@ -82,9 +83,10 @@ public class Atencion {
             String fecha= atencion.getCita().getFecha();
             String cedulaEmpleado= atencion.getCita().getEmpleado().getCedula();
             if (buscador.equals(cedula) || buscador.equals(fecha) || buscador.equals(cedulaEmpleado)){
-                System.out.println(atencion);
+                atencionesBusqueda.add(atencion);
             }
         }
+        return atencionesBusqueda;
     }
 }
  

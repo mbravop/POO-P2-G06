@@ -18,21 +18,33 @@ public class ProyectoPOOG6 {
     
     public static void inicializarSistema(){
         //Inicializa el sistema con al menos un empleado, dos clientes, tres servicios, 2 citas sin atender, 1 atención.
-        Persona representanteprueba = new Persona("cedula","Dereck","0000","@gye");
+        empleados = new ArrayList<>();
+        empleados.add(new Empleado("0908070605", "Carlos", "2840329","@espol", true));
+        empleados.add(new Empleado("1029384756","Fernando", "1203201","@terapia", true));
+        
+        Persona representanteprueba1 = new Persona("0910203040","Dereck","2203190","@correo1");
+        Persona representanteprueba2 = new Persona("1122334455","Edu","245060","@correo2");
+        
         clientes = new ArrayList<>();
-        clientes.add(new Cliente(representanteprueba,"0987654321","Mauricio","12345", "@espol"));
+        clientes.add(new Cliente(representanteprueba1,"0987654321","Mauricio Bravo","12345", "@espol"));
+        clientes.add(new Cliente(representanteprueba2,"1234567890","Carlos Salazar","289031","@fiec"));
         
         
         servicios = new ArrayList<>();
         servicios.add(new Servicio("Terapia de Lenguaje",60,30.00,true));
         servicios.add(new Servicio("Terapia de Psicopedagógica",45,40.00,true));
-        
-        empleados = new ArrayList<>();
-        empleados.add(new Empleado("0908020508", "Carlos", "2840329","@espol.edu.ec", true));
-        
+        servicios.add(new Servicio("Terapia cognitiva",40,25.00,true));
+         
         citas = new ArrayList<>();
+        //Cita atendida
+        citas.add(new Cita(clientes.get(0),empleados.get(0),servicios.get(0),"13/10/2022","10:00"));
+        //Citas sin atender
+        citas.add(new Cita(clientes.get(1),empleados.get(1),servicios.get(1),"15/10/2022","09:00"));
+        citas.add(new Cita(clientes.get(0),empleados.get(1),servicios.get(2),"17/10/2022","18:00"));
         
         atenciones = new ArrayList<>();
+        //Atencion de la cita 1
+        atenciones.add(new Atencion(citas.get(0),20,empleados.get(0)));
         
     }
     
@@ -40,6 +52,7 @@ public class ProyectoPOOG6 {
         Scanner sc = new Scanner(System.in);
         int opcion;
         inicializarSistema();
+        
         do {
             System.out.println("M E N U  P R I N C I P A L \n");
             System.out.println(" 1. Servicios \n 2. Empleados \n 3. Clientes \n 4. Citas  \n 5. Atenciones  \n 6. Salir");
@@ -153,8 +166,22 @@ public class ProyectoPOOG6 {
                                 System.out.print("Ingrese hora de la cita (hh:mm): ");
                                 String hora = sc.nextLine();
                                 ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
-                                ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
-                                Cita.crearCita(clientes, citas, empleadosDisponibles, serviciosDisponibles, fecha, hora);
+                                if(empleadosDisponibles.size()>0){
+                                    Cliente clienteCedula = null;
+                                    System.out.println("Ingrese el numero de cedula del cliente");
+                                    String cedula = sc.nextLine();
+                                    clienteCedula = Cliente.buscarCliente(clientes, cedula);
+                                    if(clienteCedula!=null){
+                                        ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
+                                        Cita.crearCita(clienteCedula, citas, empleadosDisponibles, serviciosDisponibles, fecha, hora);
+                                    }else{
+                                        System.out.println("No existe un cliente con esta cedula, intente nuevamente");
+                                        break;
+                                    }
+                                }else{
+                                    System.out.println("No es posible crear una cita, no hay empleados disponibles a la hora y fecha deseadas.");
+                                    break;
+                                }
                                 break;
                             case 2:
                                 System.out.print("Ingrese el numero de cedula del cliente: ");
@@ -192,8 +219,12 @@ public class ProyectoPOOG6 {
                                 break;
                             case 2:
                                 //System.out.println("Ingrese información para la consulta");
-                                Atencion.consultarAtencion(atenciones);
-                                System.out.println("Finalizando metodo consultarAtencion");
+                                ArrayList<Atencion> atencionesBusqueda = Atencion.consultarAtencion(atenciones);
+                                if(atencionesBusqueda.size()==0){
+                                    System.out.println("No existen atenciones bajo el parámetro buscado");
+                                }else{
+                                    System.out.println(atencionesBusqueda);
+                                }
                                 break;
                             default:
                                 System.out.println("Volviendo...\n");

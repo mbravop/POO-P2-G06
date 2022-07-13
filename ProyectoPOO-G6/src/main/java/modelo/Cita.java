@@ -57,11 +57,10 @@ public class Cita {
         }
     }
     
-    public static void crearCita(ArrayList<Cliente> clientes, ArrayList<Cita> citas, ArrayList<Empleado> empleadosDisponibles, ArrayList<Servicio> servicios, String fecha, String hora){
-     Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el numero de cedula del cliente");
-        String cedula = sc.nextLine();
-        Cliente clienteCedula = Cliente.buscarCliente(clientes, cedula);
+    public static void crearCita(Cliente clienteCedula, ArrayList<Cita> citas, ArrayList<Empleado> empleadosDisponibles, ArrayList<Servicio> servicios, String fecha, String hora){
+        Scanner sc = new Scanner(System.in);
+        
+        
         
         System.out.println("Se muestran los empleados disponibles para la fecha y hora solicitada. ");
         int i =0;
