@@ -17,6 +17,7 @@ public class ProyectoPOOG6 {
     public static ArrayList<Atencion> atenciones;
     
     public static void inicializarSistema(){
+        //Inicializa el sistema con al menos un empleado, dos clientes, tres servicios, 2 citas sin atender, 1 atención.
         Persona representanteprueba = new Persona("cedula","Dereck","0000","@gye");
         clientes = new ArrayList<>();
         clientes.add(new Cliente(representanteprueba,"0987654321","Mauricio","12345", "@espol"));
@@ -187,7 +188,7 @@ public class ProyectoPOOG6 {
                             case 1:
                                 System.out.print("Ingrese cédula del cliente: ");
                                 String cedula = sc.nextLine();
-                                Atencion.registrarAtencion(atenciones, citas, cedula);
+                                Atencion.registrarAtencion(atenciones, citas, cedula, empleados);
                                 break;
                             case 2:
                                 //System.out.println("Ingrese información para la consulta");

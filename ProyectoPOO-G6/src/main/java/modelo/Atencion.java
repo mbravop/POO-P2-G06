@@ -9,22 +9,27 @@ import java.util.Scanner;
 
 public class Atencion {
     private Cita cita;
+    private int tiempoAtencion;
+    private Empleado empleado;
 
-    public Atencion(Cita cita) {
+    public Atencion(Cita cita, int atencion, Empleado empleado) {
         this.cita= cita;
+        this.tiempoAtencion = atencion;
+        this.empleado = empleado;
     }
 
     public Cita getCita() {
         return cita;
     }
-    
 
     @Override
     public String toString() {
-        return "Atencion{" + "cita=" + cita + '}';
+        return "Realizado por: "+empleado.getCedula() + " " +empleado.getNombre()+ " Cliente: " + cita.getCliente().getCedula() + " " + cita.getCliente().getNombre() + " Duracion: " + tiempoAtencion + " minutos.";
     }
     
-    public static void registrarAtencion(ArrayList<Atencion> atenciones, ArrayList<Cita> citas, String cedula){
+    
+    
+    public static void registrarAtencion(ArrayList<Atencion> atenciones, ArrayList<Cita> citas, String cedula, ArrayList<Empleado> empleados){
         ArrayList<Cita> citaPersona = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int contador = 0;
@@ -44,15 +49,27 @@ public class Atencion {
         sc.nextLine();
         Cita citaEscogida= citaPersona.get(citaConfirmada-1);
         
+        System.out.println(citaEscogida);
         System.out.println("Ingrese la duración en minutos de la atencion:");
         int duracionAtencion= sc.nextInt();
         sc.nextLine();
         
-        Servicio servicioRealizado= citaEscogida.getServicio();
-        servicioRealizado.setDuracion(duracionAtencion);
+        System.out.println("El empleado asignado a la cita realizó la atención? S/N");
+        String respuesta = sc.nextLine();
+        if(respuesta.equals("S")){
+            Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
+            atenciones.add(atencionRealizada);
+        }else{
+            System.out.println("Empleados: ");
+            Empleado.mostrarEmpleados(empleados);
+            System.out.println("Ingrese el número del empleado que realizó la atención");
+            int indiceEmpleado = sc.nextInt();
+            sc.nextLine();
+            Empleado empleadoAtencion = empleados.get(indiceEmpleado-1);
+            Atencion atencionCambio = new Atencion(citaEscogida, duracionAtencion, empleadoAtencion);
+            atenciones.add(atencionCambio);
+        }
         
-        Atencion atencionRealizada = new Atencion(citaEscogida);
-        atenciones.add(atencionRealizada);
     }
     
     public static void consultarAtencion(ArrayList<Atencion> atenciones){
