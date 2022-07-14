@@ -14,7 +14,8 @@ public class Persona {
     private String nombre;
     private String telefono;
     private String email;
-
+ 
+    //Constructor de clase Persona
     public Persona(String cedula, String nombre, String telefono, String email) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -56,6 +57,7 @@ public class Persona {
         this.email = email;
     }
 
+    //Método ToString
     @Override
     public String toString() {
         return cedula + "     " + nombre + "     " + telefono + "     " + email;

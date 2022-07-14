@@ -22,7 +22,7 @@ public class Servicio {
         estado = e;
     }
 
-    // getter
+    // getters
     public int getDuracion() {
         return duracion;
     }
@@ -30,7 +30,7 @@ public class Servicio {
     public String getNombreServicio() {
         return nombreServicio;
     }
-
+    // set
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
@@ -40,14 +40,16 @@ public class Servicio {
         return nombreServicio + "     " + duracion + "     " + precio + "     " + estado;
     }
 
-    //Método Mostrar Servicios
+    //Método Mostrar Servicios : Recibiendo el ArrayList donde estan todos los servicios, lo iteramos con un "for" y lo mostramos uno a uno.
     public static void mostrarServicios(ArrayList<Servicio> servicios) {
         for (int i = 0; i < servicios.size(); i++) {
             System.out.println((i + 1) + ". " + servicios.get(i).toString());
         }
     }
 
-    //Método Agregar Servicio
+    /*Método Agregar Servicio: Recibiendo la lista de Servicios, procedemos a pedirle al usuario los datos del servicio como el nombre, el tiempo de duración y el precio,
+    después de obtener los datos procedemos a crear el servicio con los datos recibidos y lo añadimos al Arraylist de servicios que recibimos en el método.
+    */
     public static void agregarServicio(ArrayList<Servicio> servicios) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese el nombre del servicio: ");
@@ -63,7 +65,10 @@ public class Servicio {
         servicios.add(servicioNuevo);
     }
 
-    //Método Editar Servicio
+    /*Método Editar Servicio : Recibe un entero el cual nos servirá como índice-1 de la lista de servicios que previamente se muestran por pantalla, también recibe la lita de Servicios.
+    Empezamos obteniendo el servicio a editar, procedemos a pedirle al usuario los nuevos datos corregidos del servicio que está editando,
+    finalmente reemplazamos loo nuevos datos en el servicio que estamos editando.
+    */
     public static void editarServicio(int indiceEditar, ArrayList<Servicio> servicios) {
         Scanner sc = new Scanner(System.in);
         Servicio servicioEditar = servicios.get(indiceEditar - 1);
@@ -90,12 +95,18 @@ public class Servicio {
         servicioEditar.estado = actividad;
     }
 
-    //Método Eliminar Servicio
+    /*Método Eliminar Servicio: Recibe un entero el cual nos servirá como índice-1 de lista impresa previamente, también recibe la lita de servicios.
+    Recibimos el indice del servicio que se desea eliminar y cambiamos su estado a "false" para denotar que el servicio se eliminó
+    */
     public static void eliminarServicio(int indiceEliminar, ArrayList<Servicio> servicios) {
         Servicio servicioEliminar = servicios.get(indiceEliminar - 1);
         servicioEliminar.estado = false;
     }
     
+    /*Método extra serviciosDisponibles añadido por nosotros para poder optimizar el programa: Recibe la lita de servicios.
+    Empezamos creando una nueva lista llamada "serviciosDisponibles de clase Servicios" en la cual añadiremos los servicios con estado "true" 
+    de la lista de serivicios, finalmente retornamos la lista de "serviciosDisponibles" para poder utilizarla luego en el programa.
+    */    
     public static ArrayList<Servicio> serviciosDisponibles(ArrayList<Servicio> servicios){
         ArrayList <Servicio> serviciosDisponibles = new ArrayList<>();
         for(Servicio s: servicios){
