@@ -35,22 +35,22 @@ public class Cliente extends Persona{
     public static void agregarCliente(ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos Cliente
-        System.out.println("Ingrese la cédula del cliente: ");
+        System.out.print("Ingrese la cédula del cliente: ");
         String cedula = sc.nextLine();
-        System.out.println("Ingrese el nombre del cliente: ");
+        System.out.print("Ingrese el nombre del cliente: ");
         String nombre = sc.nextLine();
-        System.out.println("Ingrese el telefono del cliente: ");
+        System.out.print("Ingrese el telefono del cliente: ");
         String telefono = sc.nextLine();
-        System.out.println("Ingrese el email del cliente: ");
+        System.out.print("Ingrese el email del cliente: ");
         String email = sc.nextLine();
         //Datos Representante
-        System.out.println("Ingrese la cédula del representante: ");
+        System.out.print("Ingrese la cédula del representante: ");
         String cedulaR = sc.nextLine();
-        System.out.println("Ingrese el nombre del representante: ");
+        System.out.print("Ingrese el nombre del representante: ");
         String nombreR = sc.nextLine();
-        System.out.println("Ingrese el telefono del representante: ");
+        System.out.print("Ingrese el telefono del representante: ");
         String telefonoR = sc.nextLine();
-        System.out.println("Ingrese el email del representante: ");
+        System.out.print("Ingrese el email del representante: ");
         String emailR = sc.nextLine();
         //Agregar Cliente
         Persona representante= new Persona(cedulaR,nombreR,telefonoR,emailR);
@@ -63,11 +63,11 @@ public class Cliente extends Persona{
         //Datos a cambiar
         Cliente clienteEditar = clientes.get(indiceEditar-1);
         System.out.println("Ingrese la información corregida");
-        System.out.println("Nombre: ");
+        System.out.print("Nombre: ");
         String nombreNuevo = sc.nextLine();
-        System.out.println("Telefono: ");
+        System.out.print("Telefono: ");
         String telefonoNuevo = sc.nextLine();
-        System.out.println("Email: ");
+        System.out.print("Email: ");
         String emailNuevo = sc.nextLine();
         
         //Actualizar Cliente

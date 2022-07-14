@@ -62,10 +62,10 @@ public class ProyectoPOOG6 {
                 case 1: // SERVICIOS
                     int opcion1;
                     do {
-                        System.out.println("\nL I S T A D O   D E   S E R V I C I O S \n");
+                        System.out.println("\n↓↓↓ L I S T A D O   D E   S E R V I C I O S ↓↓↓\n");
                         //Metodo mostrar servicios
                         Servicio.mostrarServicios(servicios);
-                        System.out.println("----- 1. Agregar Servicios ----- 2. Editar Servicios ----- 3. Eliminar Servicios ----- 4. Menu Principal \n");
+                        System.out.println("\n----- 1. Agregar Servicios ----- 2. Editar Servicios ----- 3. Eliminar Servicios ----- 4. Menu Principal");
                         opcion1 = sc.nextInt();
                         sc.nextLine();
                         switch (opcion1) {
@@ -94,10 +94,10 @@ public class ProyectoPOOG6 {
                 case 2: // EMPLEADOS
                     int opcion2;
                     do {
-                        // Método mostrar empleados
+                        System.out.println("\n ↓↓↓ L I S T A  D E  E M P L E A D O S ↓↓↓");
                         System.out.println("#   CEDULA ----- NOMBRE ----- TELEFONO ----- EMAIL ----- ESTADO");
                         Empleado.mostrarEmpleados(empleados);
-                        System.out.println("----- 1. Agregar empleado ----- 2. Editar empleado ----- 3. Eliminar empleado ----- 4. Menu Principal");
+                        System.out.println("\n----- 1. Agregar empleado ----- 2. Editar empleado ----- 3. Eliminar empleado ----- 4. Menu Principal");
                         opcion2 = sc.nextInt();
                         sc.nextLine();
                         switch (opcion2) {
@@ -106,13 +106,13 @@ public class ProyectoPOOG6 {
                                 Empleado.agregarEmpleado(empleados);
                                 break;
                             case 2:
-                                System.out.println("Ingrese el número del empleado a editar");
+                                System.out.print("Ingrese el número del empleado a editar: ");
                                 int editar = sc.nextInt();
                                 sc.nextLine();
                                 Empleado.editarEmpleado(editar, empleados);
                                 break;
                             case 3:
-                                System.out.println("Ingrese el número del empleado a eliminar");
+                                System.out.print("Ingrese el número del empleado a eliminar: ");
                                 int eliminar = sc.nextInt();
                                 sc.nextLine();
                                 Empleado.eliminarEmpleado(eliminar, empleados);
@@ -127,10 +127,11 @@ public class ProyectoPOOG6 {
                 case 3: // CLIENTES
                     int opcion3;
                     do{
+                        System.out.println("\n↓↓↓ L I S T A  D E  C L I E N T E S ↓↓↓");
                         System.out.println("#   CEDULA ----- NOMBRE ----- TELEFONO ----- EMAIL");
                         //Metodo mostrar clientes
                         Cliente.mostrarClientes(clientes);
-                        System.out.println("----- 1. Agregar cliente ----- 2. Editar cliente ----- 3. Menu Principal \n");
+                        System.out.println("\n----- 1. Agregar cliente ----- 2. Editar cliente ----- 3. Menu Principal");
                         opcion3 = sc.nextInt();
                         sc.nextLine();
                         switch (opcion3) {
@@ -155,12 +156,13 @@ public class ProyectoPOOG6 {
                     do{
                         //Mostrar citas
                         //Cita.mostrarCitas(citas);
-                        System.out.println(" 1. Crear cita\n 2. Eliminar cita\n 3. Consultar citas\n 4. Menu Principal\n");
+                        System.out.println("\n↓↓↓ M E N Ú  D E  C I T A S ↓↓↓");
+                        System.out.println("\n 1. Crear cita\n 2. Eliminar cita\n 3. Consultar citas\n 4. Menu Principal");
                         opcion4 = sc.nextInt();
                         sc.nextLine();
                         switch (opcion4){
                             case 1:
-                                System.out.println("Ingrese la información para la nueva cita: ");
+                                System.out.println("Ingrese la información para la nueva cita");
                                 System.out.print("Ingrese fecha de la cita (dd/mm/aaaa): ");
                                 String fecha = sc.nextLine();
                                 System.out.print("Ingrese hora de la cita (hh:mm): ");
@@ -168,7 +170,7 @@ public class ProyectoPOOG6 {
                                 ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
                                 if(empleadosDisponibles.size()>0){
                                     Cliente clienteCedula = null;
-                                    System.out.println("Ingrese el numero de cedula del cliente");
+                                    System.out.print("Ingrese el numero de cedula del cliente: ");
                                     String cedula = sc.nextLine();
                                     clienteCedula = Cliente.buscarCliente(clientes, cedula);
                                     if(clienteCedula!=null){
@@ -187,7 +189,6 @@ public class ProyectoPOOG6 {
                                 System.out.print("Ingrese el numero de cedula del cliente: ");
                                 String cedula = sc.nextLine();
                                 Cita.eliminarCita(cedula, citas);
-                                
                                 break;
                             case 3:
                                 System.out.print("Ingrese la fecha(dd/mm/aaaa) para consultar las citas: ");
@@ -203,12 +204,8 @@ public class ProyectoPOOG6 {
                 case 5: // ATENCIONES
                     int opcion5;
                     do{
-                        if(atenciones.size()>0){
-                            for(Atencion a: atenciones){
-                            System.out.println(a);
-                        }
-                        }
-                        System.out.println(" 1. Registrar atencion \n 2. Consultar atención \n 3. Menu Principal\n");
+                        System.out.println("↓↓↓ M E N Ú  D E  A T E N C I O N E S ↓↓↓");
+                        System.out.println("\n 1. Registrar atencion \n 2. Consultar atención \n 3. Menu Principal");
                         opcion5 = sc.nextInt();
                         sc.nextLine();
                         switch(opcion5){

@@ -46,7 +46,7 @@ public class Cita {
     
     @Override
     public String toString() {
-        String cadena = "Fecha: " + fecha + " Hora: "+ hora + " Empleado: " + empleado.getCedula() +" "+ empleado.getNombre() + " Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " Servicio: " + servicio.getNombreServicio();
+        String cadena = "Fecha: " + fecha + " Hora: "+ hora + " | Empleado: " + empleado.getCedula() +" "+ empleado.getNombre() + " | Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " | Servicio: " + servicio.getNombreServicio();
         return cadena;
     }
     
@@ -59,18 +59,15 @@ public class Cita {
     
     public static void crearCita(Cliente clienteCedula, ArrayList<Cita> citas, ArrayList<Empleado> empleadosDisponibles, ArrayList<Servicio> servicios, String fecha, String hora){
         Scanner sc = new Scanner(System.in);
-        
-        
-        
         System.out.println("Se muestran los empleados disponibles para la fecha y hora solicitada. ");
-        int i =0;
+        int i = 0;
         for(Empleado e: empleadosDisponibles){
             
             System.out.println((1+i)+" "+e.toString());
             i++;
         }
         
-        System.out.println("Seleccione el numero del empleado para la cita: ");
+        System.out.print("Seleccione el numero del empleado para la cita: ");
         int indiceEmpleado = sc.nextInt();
         sc.nextLine();
         
@@ -78,7 +75,7 @@ public class Cita {
         
         System.out.println("Se muestran los servicios disponibles ");
         Servicio.mostrarServicios(servicios);
-        System.out.println("Seleccione el numero del servicio para la cita: ");
+        System.out.print("Seleccione el numero del servicio para la cita: ");
         int indiceServicio = sc.nextInt();
         sc.nextLine();
         
@@ -113,11 +110,15 @@ public class Cita {
                 contador +=1;
             }
         }
-        System.out.println("Qué cita de la lista desea eliminar?");
-        int indiceEliminar = sc.nextInt();
-        sc.nextLine();
-        citas.remove(citaPersona.get(indiceEliminar-1));
-        citaPersona.remove(indiceEliminar -1);
+        if(contador!=0){
+            System.out.println("Qué cita de la lista desea eliminar?");
+            int indiceEliminar = sc.nextInt();
+            sc.nextLine();
+            citas.remove(citaPersona.get(indiceEliminar-1));
+            citaPersona.remove(indiceEliminar -1);
+        }else{
+            System.out.println("No hay citas agendadas al número de cédula.");
+        }
         
     }
     
@@ -129,7 +130,9 @@ public class Cita {
                 contador++;
             }
         }
-        
+        if(contador==0){
+            System.out.println("No existen citas en esta fecha: "+fecha);
+        }
         
     }
      

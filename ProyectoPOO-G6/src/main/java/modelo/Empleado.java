@@ -38,13 +38,13 @@ public class Empleado extends Persona {
 
     public static void agregarEmpleado(ArrayList<Empleado> empleados) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese la cédula del empleado: ");
+        System.out.print("Ingrese la cédula del empleado: ");
         String cedula = sc.nextLine();
-        System.out.println("Ingrese el nombre del empleado: ");
+        System.out.print("Ingrese el nombre del empleado: ");
         String nombre = sc.nextLine();
-        System.out.println("Ingrese el telefono del empleado: ");
+        System.out.print("Ingrese el telefono del empleado: ");
         String telefono = sc.nextLine();
-        System.out.println("Ingrese el email del empleado: ");
+        System.out.print("Ingrese el email del empleado: ");
         String email = sc.nextLine();
 
         Empleado empleadoNuevo = new Empleado(cedula, nombre, telefono, email, true);
@@ -56,15 +56,13 @@ public class Empleado extends Persona {
         Scanner sc = new Scanner(System.in);
         Empleado empleadoEditar = empleados.get(indiceEditar - 1);
         System.out.println("Ingrese la información corregida");
-        System.out.println("Nombre: ");
+        System.out.print("Nombre: ");
         String nombreNuevo = sc.nextLine();
-        System.out.println("Telefono: ");
+        System.out.print("Telefono: ");
         String telefonoNuevo = sc.nextLine();
-        System.out.println("Email: ");
+        System.out.print("Email: ");
         String emailNuevo = sc.nextLine();
-        System.out.println("Estado: ");
-
-        System.out.println("El empleado está activo? S/N");
+        System.out.print("El empleado está activo? S/N: ");
         String respuesta = sc.nextLine();
         boolean actividad;
         if (respuesta.equals("S")) {

@@ -50,12 +50,12 @@ public class Servicio {
     //Método Agregar Servicio
     public static void agregarServicio(ArrayList<Servicio> servicios) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del servicio: ");
+        System.out.print("Ingrese el nombre del servicio: ");
         String nombre = sc.nextLine();
-        System.out.println("Ingrese la duración en minutos: ");
+        System.out.print("Ingrese la duración en minutos: ");
         int tiempo = sc.nextInt();
         sc.nextLine();
-        System.out.println("Ingrese el precio: ");
+        System.out.print("Ingrese el precio: ");
         double precio = sc.nextDouble();
         sc.nextLine();
 
@@ -68,15 +68,15 @@ public class Servicio {
         Scanner sc = new Scanner(System.in);
         Servicio servicioEditar = servicios.get(indiceEditar - 1);
         System.out.println("Ingrese la información corregida");
-        System.out.println("Nombre: ");
+        System.out.print("Nombre: ");
         String nombreNuevo = sc.nextLine();
-        System.out.println("Duracion en minutos: ");
+        System.out.print("Duracion en minutos: ");
         int tiempoNuevo = sc.nextInt();
         sc.nextLine();
-        System.out.println("Precio: ");
+        System.out.print("Precio: ");
         double precioNuevo = sc.nextDouble();
         sc.nextLine();
-        System.out.println("El servicio está activo? S/N");
+        System.out.print("El servicio está activo? S/N: ");
         String respuesta = sc.nextLine();
         boolean actividad;
         if (respuesta.equals("S")) {

@@ -43,31 +43,34 @@ public class Atencion {
 
             }
         }
-        
-        System.out.println("¿Qué cita desea confirmar la atención?");
-        int citaConfirmada= sc.nextInt();
-        sc.nextLine();
-        Cita citaEscogida= citaPersona.get(citaConfirmada-1);
-        
-        System.out.println(citaEscogida);
-        System.out.println("Ingrese la duración en minutos de la atencion:");
-        int duracionAtencion= sc.nextInt();
-        sc.nextLine();
-        
-        System.out.println("El empleado asignado a la cita realizó la atención? S/N");
-        String respuesta = sc.nextLine();
-        if(respuesta.equals("S")){
-            Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
-            atenciones.add(atencionRealizada);
-        }else{
-            System.out.println("Empleados: ");
-            Empleado.mostrarEmpleados(empleados);
-            System.out.println("Ingrese el número del empleado que realizó la atención");
-            int indiceEmpleado = sc.nextInt();
+        if(contador!=0){
+            System.out.println("¿Qué cita desea confirmar la atención?");
+            int citaConfirmada= sc.nextInt();
             sc.nextLine();
-            Empleado empleadoAtencion = empleados.get(indiceEmpleado-1);
-            Atencion atencionCambio = new Atencion(citaEscogida, duracionAtencion, empleadoAtencion);
-            atenciones.add(atencionCambio);
+            Cita citaEscogida= citaPersona.get(citaConfirmada-1);
+
+            System.out.println(citaEscogida);
+            System.out.println("Ingrese la duración en minutos de la atencion:");
+            int duracionAtencion= sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("El empleado asignado a la cita realizó la atención? S/N");
+            String respuesta = sc.nextLine();
+            if(respuesta.equals("S")){
+                Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
+                atenciones.add(atencionRealizada);
+            }else{
+                System.out.println("Empleados: ");
+                Empleado.mostrarEmpleados(empleados);
+                System.out.println("Ingrese el número del empleado que realizó la atención");
+                int indiceEmpleado = sc.nextInt();
+                sc.nextLine();
+                Empleado empleadoAtencion = empleados.get(indiceEmpleado-1);
+                Atencion atencionCambio = new Atencion(citaEscogida, duracionAtencion, empleadoAtencion);
+                atenciones.add(atencionCambio);
+            }
+        }else{
+            System.out.println("Este numero de cédula no tiene citas, no se puede registar una atención.");
         }
         
     }
