@@ -90,7 +90,7 @@ public class Empleado extends Persona {
         empleadoEliminar.estado = false;
     }
     
-    /*Método mostrarEmpleadosDisponibles: Recibe la lista de empleados, la lista de citas un String fecha y un String hora: Empezamos creando la lista de citas no disponibles la cual llamaremos "citasNoDisponibles", después una lista de empleados disponibles, un contador que llamaremos "falso"
+    /*Método mostrarEmpleadosDisponibles: Recibe la lista de empleados, la lista de citas, un String fecha y un String hora. Empezamos creando la lista de citas no disponibles la cual llamaremos "citasNoDisponibles", después una lista de empleados disponibles, un contador que llamaremos "falso"
     y un contador llamado "contador". Después con un for iteramos la lista de empleados y junto con el if vemos cuáles de los empleados de la lista tienen su estado "Falso"; mientras un objeto de la lista empleados  
     tenga en su estado falso nuestro contador llamado "falso" aumentara en +1, después paralelamente iteraremos la lista llamada "citasNoDisponibles" y con un if revisaremos si la cedula de un empleado 
     de la lista empleados se encuentra en la liste de citasNoDisponibles, sabiendo que si esto se cumple nuestro contador "contador" aumentará en +1.
