@@ -30,7 +30,7 @@ public class Servicio {
     public String getNombreServicio() {
         return nombreServicio;
     }
-    // set
+    // setter
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }

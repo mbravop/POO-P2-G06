@@ -10,12 +10,14 @@ import java.util.ArrayList;
 
 public class ProyectoPOOG6 {
     
+    //ATRIBUTOS DEL MAIN
     public static ArrayList<Servicio> servicios;
     public static ArrayList<Empleado> empleados;
     public static ArrayList<Cliente> clientes;
     public static ArrayList<Cita> citas;
     public static ArrayList<Atencion> atenciones;
     
+    //METODO INICIALIZAR SISTEMA
     public static void inicializarSistema(){
         //Inicializa el sistema con al menos un empleado, dos clientes, tres servicios, 2 citas sin atender, 1 atención.
         empleados = new ArrayList<>();
@@ -52,14 +54,14 @@ public class ProyectoPOOG6 {
         Scanner sc = new Scanner(System.in);
         int opcion;
         inicializarSistema();
-        
+        //Menú del Sistema
         do {
             System.out.println("M E N U  P R I N C I P A L \n");
             System.out.println(" 1. Servicios \n 2. Empleados \n 3. Clientes \n 4. Citas  \n 5. Atenciones  \n 6. Salir");
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1: // SERVICIOS
+                case 1: // CLASE    SERVICIOS
                     int opcion1;
                     do {
                         System.out.println("\n↓↓↓ L I S T A D O   D E   S E R V I C I O S ↓↓↓\n");
@@ -70,16 +72,19 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch (opcion1) {
                             case 1:
+                                //METODO AGREGAR SERVICIO
                                 System.out.println("Ingrese la información del servicio");
                                 Servicio.agregarServicio(servicios);
                                 break;
                             case 2:
+                                //METODO EDITAR SERVICIO
                                 System.out.print("Ingrese el número del servicio a editar: ");
                                 int editar = sc.nextInt();
                                 sc.nextLine();
                                 Servicio.editarServicio(editar, servicios);
                                 break;
                             case 3:
+                                //METODO ELIMINAR SERVICIO
                                 System.out.print("Ingrese el número del servicio a eliminar: ");
                                 int eliminar = sc.nextInt();
                                 sc.nextLine();
@@ -91,7 +96,7 @@ public class ProyectoPOOG6 {
                     } while (opcion1 > 0 && opcion1 < 4);
                     break;
 
-                case 2: // EMPLEADOS
+                case 2: // CLASE    EMPLEADOS
                     int opcion2;
                     do {
                         System.out.println("\n ↓↓↓ L I S T A  D E  E M P L E A D O S ↓↓↓");
@@ -102,16 +107,19 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch (opcion2) {
                             case 1:
+                                //METODO AGREGAR EMPLEADO
                                 System.out.println("Ingrese la información del empleado");
                                 Empleado.agregarEmpleado(empleados);
                                 break;
                             case 2:
+                                //METODO EDITAR EMPLEADO
                                 System.out.print("Ingrese el número del empleado a editar: ");
                                 int editar = sc.nextInt();
                                 sc.nextLine();
                                 Empleado.editarEmpleado(editar, empleados);
                                 break;
                             case 3:
+                                //METODO ELIMINAR EMPLEADO
                                 System.out.print("Ingrese el número del empleado a eliminar: ");
                                 int eliminar = sc.nextInt();
                                 sc.nextLine();
@@ -124,7 +132,7 @@ public class ProyectoPOOG6 {
                     } while (opcion2 > 0 && opcion2 < 4);
                     break;
                     
-                case 3: // CLIENTES
+                case 3: // CLASE    CLIENTES
                     int opcion3;
                     do{
                         System.out.println("\n↓↓↓ L I S T A  D E  C L I E N T E S ↓↓↓");
@@ -136,10 +144,12 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch (opcion3) {
                             case 1:
+                                //METODO AGREGAR CLIENTE
                                 System.out.println("Ingrese la información del cliente");
                                 Cliente.agregarCliente(clientes);
                                 break;
                             case 2:
+                                //METODO EDITAR CLIENTE
                                 System.out.print("Ingrese el número del cliente a editar: ");
                                 int editar = sc.nextInt();
                                 sc.nextLine();
@@ -151,7 +161,7 @@ public class ProyectoPOOG6 {
                     }while(opcion3 > 0 && opcion3 < 3);
                     break;
                     
-                case 4: // CITAS
+                case 4: // CLASE    CITAS
                     int opcion4;
                     do{
                         //Mostrar citas
@@ -162,35 +172,44 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch (opcion4){
                             case 1:
+                                //METODO CREAR CITA
                                 System.out.println("Ingrese la información para la nueva cita");
                                 System.out.print("Ingrese fecha de la cita (dd/mm/aaaa): ");
                                 String fecha = sc.nextLine();
                                 System.out.print("Ingrese hora de la cita (hh:mm): ");
                                 String hora = sc.nextLine();
                                 ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
+                                //En caso de haber de existir empleados disponibles, se crea la cita
                                 if(empleadosDisponibles.size()>0){
                                     Cliente clienteCedula = null;
                                     System.out.print("Ingrese el numero de cedula del cliente: ");
                                     String cedula = sc.nextLine();
                                     clienteCedula = Cliente.buscarCliente(clientes, cedula);
+                                    //En caso de que exista un cliente con la cédula ingresada, se crea la cita
                                     if(clienteCedula!=null){
                                         ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
                                         Cita.crearCita(clienteCedula, citas, empleadosDisponibles, serviciosDisponibles, fecha, hora);
-                                    }else{
+                                    }
+                                    //En caso de no existir el cliente, se muestra el mensaje por pantalla
+                                    else{
                                         System.out.println("No existe un cliente con esta cedula, intente nuevamente");
                                         break;
                                     }
-                                }else{
+                                }
+                                //En caso de no existir empleados disponibles, se muestra el mensaje por pantalla
+                                else{
                                     System.out.println("No es posible crear una cita, no hay empleados disponibles a la hora y fecha deseadas.");
                                     break;
                                 }
                                 break;
                             case 2:
+                                //METODO ELIMINAR CITA
                                 System.out.print("Ingrese el numero de cedula del cliente: ");
                                 String cedula = sc.nextLine();
                                 Cita.eliminarCita(cedula, citas);
                                 break;
                             case 3:
+                                //METODO CONSULTAR CITA POR MEDIO DE LA FECHA
                                 System.out.print("Ingrese la fecha(dd/mm/aaaa) para consultar las citas: ");
                                 String fechaConsultada= sc.nextLine();
                                 Cita.consultarCita(fechaConsultada, citas);
@@ -201,7 +220,7 @@ public class ProyectoPOOG6 {
                     }while(opcion4 > 0 && opcion4 < 4);
                     break;
                     
-                case 5: // ATENCIONES
+                case 5: // CLASE    ATENCIONES
                     int opcion5;
                     do{
                         System.out.println("↓↓↓ M E N Ú  D E  A T E N C I O N E S ↓↓↓");
@@ -210,16 +229,21 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch(opcion5){
                             case 1:
+                                //METODO REGISTRAR ATENCIÓN RELACIONADA A UNA CITA
                                 System.out.print("Ingrese cédula del cliente: ");
                                 String cedula = sc.nextLine();
                                 Atencion.registrarAtencion(atenciones, citas, cedula, empleados);
                                 break;
                             case 2:
+                                //METODO CONSULTAR ATENCION
                                 //System.out.println("Ingrese información para la consulta");
                                 ArrayList<Atencion> atencionesBusqueda = Atencion.consultarAtencion(atenciones);
+                                //En caso que el arreglo de atencionesBusqueda esté vacio, se muestra el mensaje por pantalla
                                 if(atencionesBusqueda.size()==0){
                                     System.out.println("No existen atenciones bajo el parámetro buscado");
-                                }else{
+                                }
+                                //En caso que el arreglo tenga elementos se imprime dicho arreglo
+                                else{
                                     System.out.println(atencionesBusqueda);
                                 }
                                 break;
@@ -228,7 +252,7 @@ public class ProyectoPOOG6 {
                         }
                     }while(opcion5 > 0 && opcion5 < 3);
                     break;
-                    
+                //SALIENDO DEL MENÚ DEL SISTEMA    
                 default:
                     System.out.println("Cerrando sesión");
             }

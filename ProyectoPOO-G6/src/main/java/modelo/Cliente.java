@@ -31,7 +31,7 @@ public class Cliente extends Persona{
             System.out.println((i+1)+". "+ clientes.get(i).toString());
         }
     }
-    //Método Agregar Cliente
+    //Método Agregar Cliente el cual 
     public static void agregarCliente(ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos Cliente
@@ -57,7 +57,7 @@ public class Cliente extends Persona{
         Cliente clienteNuevo = new Cliente(representante, cedula,nombre,telefono,email);
         clientes.add(clienteNuevo);
     }
-    //Método Editar Cliente
+    //Método Editar Cliente el cual actualiza los datos del cliente que se desee
     public static void editarCliente(int indiceEditar, ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos a cambiar
@@ -76,6 +76,9 @@ public class Cliente extends Persona{
         clienteEditar.setEmail(emailNuevo);
     }
     
+    /*Método para buscar un cliente por medio de la cédula y el arreglo de los clientes del sistema
+    El cual es utilizado para crear una cita y aignarle el atributo de tipo Cliente, cliente escogido
+    */
     public static Cliente buscarCliente(ArrayList<Cliente> clientes, String cedula){
         Cliente clienteEscogido = null;
         for(Cliente c: clientes){
