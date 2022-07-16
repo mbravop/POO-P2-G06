@@ -5,10 +5,7 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
- *
- * @author mbravop
- */
+
 public class Cliente extends Persona{
     //atributo
     private Persona datosRepresentante;
@@ -52,7 +49,7 @@ public class Cliente extends Persona{
         String telefonoR = sc.nextLine();
         System.out.print("Ingrese el email del representante: ");
         String emailR = sc.nextLine();
-        //Agregar Cliente
+        //Creacion de objetos de tipo Persona(representante) y Cliente
         Persona representante= new Persona(cedulaR,nombreR,telefonoR,emailR);
         Cliente clienteNuevo = new Cliente(representante, cedula,nombre,telefono,email);
         clientes.add(clienteNuevo);
@@ -77,7 +74,7 @@ public class Cliente extends Persona{
     }
     
     /*Método para buscar un cliente por medio de la cédula y el arreglo de los clientes del sistema
-    El cual es utilizado para crear una cita y aignarle el atributo de tipo Cliente, cliente escogido
+    El cual es utilizado para crear una cita y asignarle el atributo de tipo Cliente, cliente escogido
     */
     public static Cliente buscarCliente(ArrayList<Cliente> clientes, String cedula){
         Cliente clienteEscogido = null;

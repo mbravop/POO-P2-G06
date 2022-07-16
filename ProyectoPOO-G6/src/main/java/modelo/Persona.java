@@ -4,10 +4,6 @@
  */
 package modelo;
 
-/**
- *
- * @author mbravop
- */
 public class Persona {
     //Atributos
     private String cedula;

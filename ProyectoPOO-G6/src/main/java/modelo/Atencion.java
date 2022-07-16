@@ -30,9 +30,8 @@ public class Atencion {
     }
     
     
-    /*Método para registrar una atencion el cual recibe un arreglo de atenciones,citas y empleados, y la cédula del cliente
+    //Método para registrar una atencion el cual recibe un arreglo de atenciones,citas y empleados, y la cédula del cliente
     
-    */
     public static void registrarAtencion(ArrayList<Atencion> atenciones, ArrayList<Cita> citas, String cedula, ArrayList<Empleado> empleados){
         ArrayList<Cita> citaPersona = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -48,7 +47,7 @@ public class Atencion {
 
             }
         }
-        // En caso de no existir ninguna atención, se pide que se escoga la cita a la que se dará la atención 
+        // Si el cliente cuenta con citas agendadas, se pregunta por cuál de ellas se desea registrar la atención
         if(contador!=0){
             System.out.println("¿Qué cita desea confirmar la atención?");
             int citaConfirmada= sc.nextInt();
@@ -65,7 +64,7 @@ public class Atencion {
             System.out.println("El empleado asignado a la cita realizó la atención? S/N");
             String respuesta = sc.nextLine();
             //En de caso de que sea el mismo empleado, se crea la atención con el mismo empleado
-            if(respuesta.equals("S")){
+            if(respuesta.equals("S") || respuesta.equals("s")){
                 Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
                 atenciones.add(atencionRealizada);
             }
@@ -95,7 +94,7 @@ public class Atencion {
     */
     public static ArrayList<Atencion> consultarAtencion(ArrayList<Atencion> atenciones){
         Scanner sc= new Scanner(System.in);
-        ArrayList<Atencion> atencionesBusqueda = new ArrayList<Atencion>();
+        ArrayList<Atencion> atencionesBusqueda = new ArrayList<>();
         System.out.println("Ingrese una fecha(dd/mm/aaaa), su cedula o la cedula del empleado que lo atendio:");
         String buscador= sc.nextLine();
         //iterando el arreglo de atenciones para obtener los atributos de cada atención

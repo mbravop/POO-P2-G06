@@ -60,7 +60,7 @@ public class Cita {
         Scanner sc = new Scanner(System.in);
         System.out.println("Se muestran los empleados disponibles para la fecha y hora solicitada. ");
         int i = 0;
-        //iterando el arreglo de empleado disponibles para mostrarlos por pantalla
+        //iterando el arreglo de empleado disponibles para mostrarlos por pantalla enumerados.
         for(Empleado e: empleadosDisponibles){
             
             System.out.println((1+i)+" "+e.toString());
@@ -70,7 +70,7 @@ public class Cita {
         System.out.print("Seleccione el numero del empleado para la cita: ");
         int indiceEmpleado = sc.nextInt();
         sc.nextLine();
-        
+        System.out.println();
         //Se guarda al empleado escogido dentro de una variable de tipo Empleado
         Empleado empleadoEscogido = empleadosDisponibles.get(indiceEmpleado-1);
         
@@ -89,6 +89,7 @@ public class Cita {
         
         //Se añade la cita al arreglo de citas
         citas.add(citaNueva);
+        System.out.println("\nCita creada exitosamente.");
         
     }
     

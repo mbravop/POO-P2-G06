@@ -84,7 +84,7 @@ public class Servicio {
         System.out.print("El servicio está activo? S/N: ");
         String respuesta = sc.nextLine();
         boolean actividad;
-        if (respuesta.equals("S")) {
+        if (respuesta.equals("S") || respuesta.equals("s")) {
             actividad = true;
         } else {
             actividad = false;

@@ -8,6 +8,11 @@ import java.util.Scanner;
 import modelo.*;
 import java.util.ArrayList;
 
+/**
+ * @group  Grupo #6 - POO
+ * @author Mauricio Bravo, Dereck Santander, Carlos Salazar
+ */
+
 public class ProyectoPOOG6 {
     
     //ATRIBUTOS DEL MAIN
@@ -65,6 +70,7 @@ public class ProyectoPOOG6 {
                     int opcion1;
                     do {
                         System.out.println("\n↓↓↓ L I S T A D O   D E   S E R V I C I O S ↓↓↓\n");
+                        System.out.println("#   NOMBRE ----- DURACIÓN ----- PRECIO ----- ESTADO");
                         //Metodo mostrar servicios
                         Servicio.mostrarServicios(servicios);
                         System.out.println("\n----- 1. Agregar Servicios ----- 2. Editar Servicios ----- 3. Eliminar Servicios ----- 4. Menu Principal");
@@ -185,6 +191,7 @@ public class ProyectoPOOG6 {
                                     System.out.print("Ingrese el numero de cedula del cliente: ");
                                     String cedula = sc.nextLine();
                                     clienteCedula = Cliente.buscarCliente(clientes, cedula);
+                                    System.out.println();
                                     //En caso de que exista un cliente con la cédula ingresada, se crea la cita
                                     if(clienteCedula!=null){
                                         ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
