@@ -26,7 +26,7 @@ public class Atencion {
 
     @Override
     public String toString() {
-        return "Realizado por: "+empleado.getCedula() + " " +empleado.getNombre()+ " Cliente: " + cita.getCliente().getCedula() + " " + cita.getCliente().getNombre() + " Duracion: " + tiempoAtencion + " minutos.";
+        return "Servicio: " + cita.getServicio().getNombreServicio()+" | Realizado por: "+empleado.getCedula() + " " +empleado.getNombre()+ " | Cliente: " + cita.getCliente().getCedula() + " " + cita.getCliente().getNombre() + " | Duracion: " + tiempoAtencion + " minutos.";
     }
     
     
@@ -49,24 +49,25 @@ public class Atencion {
         }
         // Si el cliente cuenta con citas agendadas, se pregunta por cuál de ellas se desea registrar la atención
         if(contador!=0){
-            System.out.println("¿Qué cita desea confirmar la atención?");
+            System.out.print("¿Qué cita desea confirmar la atención? ");
             int citaConfirmada= sc.nextInt();
             sc.nextLine();
             
             Cita citaEscogida= citaPersona.get(citaConfirmada-1);
 
             System.out.println(citaEscogida);
-            System.out.println("Ingrese la duración en minutos de la atencion:");
+            System.out.print("Ingrese la duración en minutos de la atencion: ");
             int duracionAtencion= sc.nextInt();
             sc.nextLine();
             
             //Se verifica si el empleado que dio la atencion es el mismo que agendo la cita
-            System.out.println("El empleado asignado a la cita realizó la atención? S/N");
+            System.out.print("El empleado asignado a la cita realizó la atención? S/N ");
             String respuesta = sc.nextLine();
             //En de caso de que sea el mismo empleado, se crea la atención con el mismo empleado
             if(respuesta.equals("S") || respuesta.equals("s")){
                 Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
                 atenciones.add(atencionRealizada);
+                System.out.println("Atención registrada exitosamente.");
             }
             /*En caso de ser distintos empleados, se muestran los empleados disponibles y se hace escoger el empleado que desee
             Y se crea la atención con otro empleado
@@ -74,12 +75,13 @@ public class Atencion {
             else{
                 System.out.println("Empleados: ");
                 Empleado.mostrarEmpleados(empleados);
-                System.out.println("Ingrese el número del empleado que realizó la atención");
+                System.out.print("Ingrese el número del empleado que realizó la atención: ");
                 int indiceEmpleado = sc.nextInt();
                 sc.nextLine();
                 Empleado empleadoAtencion = empleados.get(indiceEmpleado-1);
                 Atencion atencionCambio = new Atencion(citaEscogida, duracionAtencion, empleadoAtencion);
                 atenciones.add(atencionCambio);
+                System.out.println("Atención registrada exitosamente.");
             }
         }
         //En caso de que no existan citas filtrando con la cédula del cliente, se muestra el mensaje por pantalla

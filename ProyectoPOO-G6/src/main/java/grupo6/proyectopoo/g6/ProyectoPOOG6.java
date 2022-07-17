@@ -234,10 +234,11 @@ public class ProyectoPOOG6 {
                         sc.nextLine();
                         switch(opcion5){
                             case 1:
-                                //METODO REGISTRAR ATENCIÓN RELACIONADA A UNA CITA
+                                //METODO REGISTRAR ATENCIÓN RELACIONADA A UNA CITA NO ATENDIDA
                                 System.out.print("Ingrese cédula del cliente: ");
                                 String cedula = sc.nextLine();
-                                Atencion.registrarAtencion(atenciones, citas, cedula, empleados);
+                                ArrayList<Cita> citasNoRealizadas = Cita.citasNoAtendidas(citas,atenciones);
+                                Atencion.registrarAtencion(atenciones, citasNoRealizadas, cedula, empleados);
                                 break;
                             case 2:
                                 //METODO CONSULTAR ATENCION
@@ -247,9 +248,13 @@ public class ProyectoPOOG6 {
                                 if(atencionesBusqueda.size()==0){
                                     System.out.println("No existen atenciones bajo el parámetro buscado");
                                 }
-                                //En caso que el arreglo tenga elementos se imprime dicho arreglo
+                                //En caso que el arreglo tenga elementos se imprime dicha lista de atenciones
                                 else{
-                                    System.out.println(atencionesBusqueda);
+                                    int contadorAtencion = 0;
+                                    System.out.println("Listado de atenciones para el parámetro buscado");
+                                    for(Atencion a: atencionesBusqueda){
+                                        System.out.println((contadorAtencion+1)+". "+ a);
+                                    }
                                 }
                                 break;
                             default:

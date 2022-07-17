@@ -155,5 +155,17 @@ public class Cita {
         }
         
     }
+    //Metodo que retorna citas que aún no han sido atendidas, y la atención pueda ser registrada.
+    public static ArrayList<Cita> citasNoAtendidas(ArrayList<Cita> citas, ArrayList<Atencion> atenciones){
+        ArrayList<Cita> citasNoRealizadas = new ArrayList<>();
+        for(Cita c: citas){
+            for(Atencion a: atenciones){
+                if(!c.equals(a.getCita())){
+                    citasNoRealizadas.add(c);
+                }
+            }
+        }
+        return citasNoRealizadas;
+    }
      
 }
