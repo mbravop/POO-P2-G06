@@ -170,8 +170,6 @@ public class ProyectoPOOG6 {
                 case 4: // CLASE    CITAS
                     int opcion4;
                     do{
-                        //Mostrar citas
-                        //Cita.mostrarCitas(citas);
                         System.out.println("\n↓↓↓ M E N Ú  D E  C I T A S ↓↓↓");
                         System.out.println("\n 1. Crear cita\n 2. Eliminar cita\n 3. Consultar citas\n 4. Menu Principal");
                         opcion4 = sc.nextInt();
