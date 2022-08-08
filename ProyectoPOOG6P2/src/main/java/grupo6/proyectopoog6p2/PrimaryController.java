@@ -13,6 +13,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import grupo6.proyectopoog6p2.modelo.Persona;
+import javafx.geometry.Pos;
+import static javafx.scene.control.ContentDisplay.CENTER;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 /**
  * FXML Controller class
  *
@@ -47,6 +51,9 @@ public class PrimaryController {
     private void iniciarClientes(){
         fpMenu.getChildren().clear();
         TableView<Persona> tabla = new TableView<>();
+        VBox vCliente = new VBox();
+        vCliente.setAlignment(Pos.CENTER);
+        Button btnAgregarCliente = new Button("Agregar Cliente");
         
         TableColumn<Persona, String> colCedula = new TableColumn<>("Cédula");
         colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
@@ -64,7 +71,9 @@ public class PrimaryController {
         
         tabla.getItems().addAll(Persona.cargarPersonas(App.pathClientes));
         
-        fpMenu.getChildren().add(tabla);
+        vCliente.getChildren().addAll(tabla,btnAgregarCliente);
+        
+        fpMenu.getChildren().add(vCliente);
     }
     
     @FXML
