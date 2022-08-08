@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import grupo6.proyectopoog6p2.modelo.Persona;
 import javafx.geometry.Pos;
 import static javafx.scene.control.ContentDisplay.CENTER;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 /**
@@ -50,10 +51,15 @@ public class PrimaryController {
     @FXML
     private void iniciarClientes(){
         fpMenu.getChildren().clear();
+        Label lblClientes = new Label("L I S T A  D E  C L I E N T E S");
         TableView<Persona> tabla = new TableView<>();
         VBox vCliente = new VBox();
         vCliente.setAlignment(Pos.CENTER);
-        Button btnAgregarCliente = new Button("Agregar Cliente");
+        Button btnAgregarCliente = new Button("Agregar cliente");
+        Button btnEditarCliente = new Button("Editar cliente");
+        Button btnEliminarCliente = new Button("Eliminar cliente");
+        HBox hAccionesCliente = new HBox(17);
+        hAccionesCliente.setAlignment(Pos.CENTER);
         
         TableColumn<Persona, String> colCedula = new TableColumn<>("Cédula");
         colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
@@ -61,7 +67,7 @@ public class PrimaryController {
         TableColumn<Persona, String> colNombre = new TableColumn<>("Nombre");
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         
-        TableColumn<Persona, String> colTelefono = new TableColumn<>("Telefono");
+        TableColumn<Persona, String> colTelefono = new TableColumn<>("Teléfono");
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         
         TableColumn<Persona, String> colEmail = new TableColumn<>("Email");
@@ -71,7 +77,9 @@ public class PrimaryController {
         
         tabla.getItems().addAll(Persona.cargarPersonas(App.pathClientes));
         
-        vCliente.getChildren().addAll(tabla,btnAgregarCliente);
+        hAccionesCliente.getChildren().addAll(btnAgregarCliente,btnEditarCliente,btnEliminarCliente);
+        
+        vCliente.getChildren().addAll(lblClientes,tabla,hAccionesCliente);
         
         fpMenu.getChildren().add(vCliente);
     }
