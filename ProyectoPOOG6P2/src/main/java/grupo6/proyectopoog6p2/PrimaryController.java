@@ -4,6 +4,7 @@
  */
 package grupo6.proyectopoog6p2;
 
+import grupo6.proyectopoog6p2.modelo.Cliente;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -57,7 +58,6 @@ public class PrimaryController {
         vCliente.setAlignment(Pos.CENTER);
         Button btnAgregarCliente = new Button("Agregar cliente");
         Button btnEditarCliente = new Button("Editar cliente");
-        Button btnEliminarCliente = new Button("Eliminar cliente");
         HBox hAccionesCliente = new HBox(17);
         hAccionesCliente.setAlignment(Pos.CENTER);
         
@@ -75,9 +75,9 @@ public class PrimaryController {
         
         tabla.getColumns().addAll(colCedula,colNombre,colTelefono,colEmail);
         
-        tabla.getItems().addAll(Persona.cargarPersonas(App.pathClientes));
+        tabla.getItems().addAll(Cliente.cargarClientes(App.pathClientes));
         
-        hAccionesCliente.getChildren().addAll(btnAgregarCliente,btnEditarCliente,btnEliminarCliente);
+        hAccionesCliente.getChildren().addAll(btnAgregarCliente,btnEditarCliente);
         
         vCliente.getChildren().addAll(lblClientes,tabla,hAccionesCliente);
         

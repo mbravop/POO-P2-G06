@@ -65,22 +65,5 @@ public class Persona {
         return cedula + "     " + nombre + "     " + telefono + "     " + email;
     }
     
-    public static ArrayList<Persona> cargarPersonas(String ruta) {
-        ArrayList<Persona> personas = new ArrayList<>();
-        InputStream input = Persona.class.getClassLoader().getResourceAsStream(ruta);
-
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(input)))
-         {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] datos = line.split(";");
-                Persona p = new Persona(datos[0], datos[1], datos[2], datos[3]);
-                personas.add(p);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
-        return personas;
-    }
+    
 }

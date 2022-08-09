@@ -3,12 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package grupo6.proyectopoog6p2.modelo;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente extends Persona{
     //atributo
-    private Persona datosRepresentante;
+    private String datosRepresentante;
 
     @Override
     public String toString() {
@@ -16,7 +20,7 @@ public class Cliente extends Persona{
     }
     
     //Constructor
-    public Cliente(Persona datosRepresentante, String cedula, String nombre, String telefono, String email) {
+    public Cliente(String datosRepresentante, String cedula, String nombre, String telefono, String email) {
         super(cedula, nombre, telefono, email);
         this.datosRepresentante = datosRepresentante;
     }
@@ -41,17 +45,11 @@ public class Cliente extends Persona{
         System.out.print("Ingrese el email del cliente: ");
         String email = sc.nextLine();
         //Datos Representante
-        System.out.print("Ingrese la cédula del representante: ");
-        String cedulaR = sc.nextLine();
-        System.out.print("Ingrese el nombre del representante: ");
-        String nombreR = sc.nextLine();
-        System.out.print("Ingrese el telefono del representante: ");
-        String telefonoR = sc.nextLine();
-        System.out.print("Ingrese el email del representante: ");
-        String emailR = sc.nextLine();
+        System.out.print("Ingrese la cédula y nombre del representante: ");
+        String cedulaNombreR = sc.nextLine();
+ 
         //Creacion de objetos de tipo Persona(representante) y Cliente
-        Persona representante= new Persona(cedulaR,nombreR,telefonoR,emailR);
-        Cliente clienteNuevo = new Cliente(representante, cedula,nombre,telefono,email);
+        Cliente clienteNuevo = new Cliente(cedulaNombreR, cedula, nombre, telefono, email);
         clientes.add(clienteNuevo);
     }
     //Método Editar Cliente el cual actualiza los datos del cliente que se desee
@@ -84,5 +82,24 @@ public class Cliente extends Persona{
             }
         }
         return clienteEscogido;
+    }
+    
+    public static ArrayList<Cliente> cargarClientes(String ruta) {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        InputStream input = Cliente.class.getClassLoader().getResourceAsStream(ruta);
+
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(input)))
+         {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] datos = line.split(";");
+                Cliente c = new Cliente(datos[0], datos[1], datos[2], datos[3], datos[4]);
+                clientes.add(c);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        return clientes;
     }
 }
