@@ -78,11 +78,20 @@ public class PrimaryController {
         App.changeRoot(root);
     }
     
-    @FXML
-    private void iniciarServicios(){
-        
-    }
     
+    @FXML
+    private void iniciarServicios() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
+        fxmlLoader.setController(null);
+        
+        MenuServicioController msc = new MenuServicioController();
+        fxmlLoader.setController(msc);
+        Parent root = (Parent) fxmlLoader.load();
+        
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        App.changeRoot(root);
+    }
+
     @FXML
     private void iniciarCitas(){
         
