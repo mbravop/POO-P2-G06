@@ -49,7 +49,7 @@ public class Servicio {
 
     @Override
     public String toString() {
-        return nombreServicio + "     " + duracion + "     " + precio + "     " + estado;
+        return nombreServicio + ";" + duracion + ";" + precio + ";" + estado;
     }
 
     //Método Mostrar Servicios : Recibiendo el ArrayList donde estan todos los servicios, lo iteramos con un "for" y lo mostramos uno a uno.

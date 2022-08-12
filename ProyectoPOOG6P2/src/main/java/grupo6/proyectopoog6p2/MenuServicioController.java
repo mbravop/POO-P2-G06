@@ -12,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import grupo6.proyectopoog6p2.modelo.Servicio;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 
 
@@ -58,7 +60,12 @@ public class MenuServicioController {
     
     @FXML
     private void anadirPersona() throws IOException{
-        
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
+        fxmlLoader.setController(null);
+        NuevoServicioController nsc = new NuevoServicioController();
+        fxmlLoader.setController(nsc);
+        Parent root = (Parent) fxmlLoader.load();
+        App.changeRoot(root);
     }
     
     @FXML

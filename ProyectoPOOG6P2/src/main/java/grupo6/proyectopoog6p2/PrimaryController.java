@@ -22,6 +22,7 @@ import static javafx.scene.control.ContentDisplay.CENTER;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.application.Platform;
 /**
  * FXML Controller class
  *
@@ -102,6 +103,6 @@ public class PrimaryController {
     }
     @FXML
     private void iniciarSalir(){
-        
+        Platform.exit();
     }
 }
