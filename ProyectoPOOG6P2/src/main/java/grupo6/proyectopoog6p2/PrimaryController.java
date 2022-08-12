@@ -66,8 +66,16 @@ public class PrimaryController {
     }
     
     @FXML
-    private void iniciarEmpleados(){
+    private void iniciarEmpleados() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+        fxmlLoader.setController(null);
         
+        MenuEmpleadoController mec = new MenuEmpleadoController();
+        fxmlLoader.setController(mec);
+        
+        Parent root = (Parent) fxmlLoader.load();
+        
+        App.changeRoot(root);
     }
     
     @FXML

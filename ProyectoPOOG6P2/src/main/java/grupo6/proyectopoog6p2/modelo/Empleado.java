@@ -21,13 +21,26 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return super.toString() + "     " + estado;
+        return super.toString() + ";" + estado;
     }
     //get
     public boolean isEstado() {
         return estado;
     }
-
+    public String getEstado(){
+        if(estado){
+            return "S";
+        }else{
+            return "N";
+        }
+    }
+    public void setEstado(String s){
+        if(s.equals("S")){
+            estado=true;
+        }else{
+            estado=false;
+        }
+    }
     /*
     Método mostrarEmpleados: Recibe la lista de empleados la cual se itera para ir mostrando la información de cada uno de los empleados en forma de lista (enumerados)
     para que sea fácil escoger alguno
