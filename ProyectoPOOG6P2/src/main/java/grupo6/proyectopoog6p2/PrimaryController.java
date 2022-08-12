@@ -14,7 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import grupo6.proyectopoog6p2.modelo.Persona;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import static javafx.scene.control.ContentDisplay.CENTER;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -27,19 +30,19 @@ import javafx.scene.layout.VBox;
 public class PrimaryController {
 
     @FXML
-    private Button btnClientes;
+    private Button btnMenuCliente;
     @FXML
-    private Button btnEmpleados;
+    private Button btnMenuEmpleados;
     @FXML
-    private Button btnServicios;
+    private Button btnMenuServicios;
     @FXML
-    private Button btnCitas;
+    private Button btnMenuCitas;
     @FXML
-    private Button btnAtenciones;
+    private Button btnMenuAtenciones;
     @FXML
-    private Button btnSalir;
+    private Button btnMenuSalir;
     @FXML
-    private FlowPane fpMenu;
+    private FlowPane fpInicial;
 
     /**
      * Initializes the controller class.
@@ -50,38 +53,16 @@ public class PrimaryController {
     }
     
     @FXML
-    private void iniciarClientes(){
-        fpMenu.getChildren().clear();
-        Label lblClientes = new Label("L I S T A  D E  C L I E N T E S");
-        TableView<Persona> tabla = new TableView<>();
-        VBox vCliente = new VBox();
-        vCliente.setAlignment(Pos.CENTER);
-        Button btnAgregarCliente = new Button("Agregar cliente");
-        Button btnEditarCliente = new Button("Editar cliente");
-        HBox hAccionesCliente = new HBox(17);
-        hAccionesCliente.setAlignment(Pos.CENTER);
+    private void iniciarClientes() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+        fxmlLoader.setController(null);
         
-        TableColumn<Persona, String> colCedula = new TableColumn<>("Cédula");
-        colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        MenuController mc = new MenuController();
+        fxmlLoader.setController(mc);
         
-        TableColumn<Persona, String> colNombre = new TableColumn<>("Nombre");
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        Parent root = (Parent) fxmlLoader.load();
         
-        TableColumn<Persona, String> colTelefono = new TableColumn<>("Teléfono");
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        
-        TableColumn<Persona, String> colEmail = new TableColumn<>("Email");
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
-        tabla.getColumns().addAll(colCedula,colNombre,colTelefono,colEmail);
-        
-        tabla.getItems().addAll(Cliente.cargarClientes(App.pathClientes));
-        
-        hAccionesCliente.getChildren().addAll(btnAgregarCliente,btnEditarCliente);
-        
-        vCliente.getChildren().addAll(lblClientes,tabla,hAccionesCliente);
-        
-        fpMenu.getChildren().add(vCliente);
+        App.changeRoot(root);
     }
     
     @FXML

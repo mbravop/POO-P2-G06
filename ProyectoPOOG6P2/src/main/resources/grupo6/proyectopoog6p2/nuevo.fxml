@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefHeight="63.0" text="N U E V O  C L I E N T E" />
-      <GridPane alignment="CENTER" maxWidth="-Infinity" prefHeight="208.0" prefWidth="437.0">
+      <Label fx:id="lblAnadirPersona" alignment="CENTER" prefHeight="35.0" prefWidth="109.0" text="Anadir Cliente" />
+      <GridPane>
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,22 +26,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Cedula:" />
-            <Label text="Nombre completo:" GridPane.rowIndex="1" />
-            <Label text="Numero de telefono:" GridPane.rowIndex="2" />
-            <Label text="Email:" GridPane.rowIndex="3" />
-            <Label text="Datos representante:" GridPane.rowIndex="4" />
-            <TextField fx:id="txtCedula" GridPane.columnIndex="1" />
-            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtDatosRepresentante" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="lblCedulaAnadir" text="Cedula:" />
+            <Label fx:id="lblNombreAnadir" text="Nombre completo:" GridPane.rowIndex="1" />
+            <Label fx:id="lblTelefonoAnadir" text="Telefono:" GridPane.rowIndex="2" />
+            <Label fx:id="lblEmailAnadir" text="Email:" GridPane.rowIndex="3" />
+            <Label fx:id="lblDatosAnadir" text="Datos representante:" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCedulaAnadir" prefWidth="251.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombreAnadir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTelefonoAnadir" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmailAnadir" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtDatosAnadir" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
          <children>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarCliente" text="Cancelar" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarCliente" text="Guardar" />
+            <Button fx:id="btnCancelarAnadir" mnemonicParsing="false" onAction="#switchToMenu" text="Cancelar" />
+            <Button fx:id="btnGuardarAnadir" mnemonicParsing="false" onAction="#guardarAnadir" text="Guardar" />
          </children>
       </HBox>
    </children>

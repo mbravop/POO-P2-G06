@@ -16,7 +16,15 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return super.toString();
+        return datosRepresentante+";"+super.toString();
+    }
+
+    public String getDatosRepresentante() {
+        return datosRepresentante;
+    }
+
+    public void setDatosRepresentante(String datosRepresentante) {
+        this.datosRepresentante = datosRepresentante;
     }
     
     //Constructor

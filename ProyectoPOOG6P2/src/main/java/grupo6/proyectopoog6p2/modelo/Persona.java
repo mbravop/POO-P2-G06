@@ -62,8 +62,6 @@ public class Persona {
     //Método ToString
     @Override
     public String toString() {
-        return cedula + "     " + nombre + "     " + telefono + "     " + email;
+        return cedula + ";" + nombre + ";" + telefono + ";" + email;
     }
-    
-    
 }

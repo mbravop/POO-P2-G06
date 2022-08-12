@@ -4,14 +4,23 @@
  */
 package grupo6.proyectopoog6p2;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import grupo6.proyectopoog6p2.modelo.Cliente;
 /**
  * FXML Controller class
  *
@@ -21,19 +30,31 @@ public class NuevoController {
 
 
     @FXML
-    private TextField txtCedula;
+    private Label lblAnadirPersona;
     @FXML
-    private TextField txtNombre;
+    private Label lblCedulaAnadir;
     @FXML
-    private TextField txtTelefono;
+    private Label lblNombreAnadir;
     @FXML
-    private TextField txtEmail;
+    private Label lblTelefonoAnadir;
     @FXML
-    private TextField txtDatosRepresentante;
+    private Label lblEmailAnadir;
     @FXML
-    private Button btnCancelar;
+    private Label lblDatosAnadir;
     @FXML
-    private Button btnGuardar;
+    private TextField txtCedulaAnadir;
+    @FXML
+    private TextField txtNombreAnadir;
+    @FXML
+    private TextField txtTelefonoAnadir;
+    @FXML
+    private TextField txtEmailAnadir;
+    @FXML
+    private TextField txtDatosAnadir;
+    @FXML
+    private Button btnCancelarAnadir;
+    @FXML
+    private Button btnGuardarAnadir;
     /**
      * Initializes the controller class.
      */
@@ -42,11 +63,36 @@ public class NuevoController {
     }    
     
     @FXML
-    private void cancelarCliente(ActionEvent event) {
+    private void switchToMenu() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+        fxmlLoader.setController(null);
+        
+        MenuController mc = new MenuController();
+        fxmlLoader.setController(mc);
+        Parent root = (Parent) fxmlLoader.load();
+        
+
+        App.changeRoot(root);
     }
 
     @FXML
-    private void guardarCliente(ActionEvent event) {
+    private void guardarAnadir() throws IOException{
+        Cliente clienteNuevo = new Cliente(txtDatosAnadir.getText(),txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText());
+        try{
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",true));
+            escritor.write(clienteNuevo.toString()+"\n");
+            escritor.flush();
+            escritor.close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Resultado de la operación");
+            alert.setContentText("Nueva persona agregada exitosamente");
+            alert.showAndWait();
+            
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        switchToMenu();
     }
 
 }

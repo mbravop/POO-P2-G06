@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package grupo6.proyectopoog6p2.modelo;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -120,4 +124,21 @@ public class Empleado extends Persona {
         return empleadosDisponibles;
     }
 
+    public static ArrayList<Empleado> cargarEmpleados(String ruta){
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        InputStream input = Cliente.class.getClassLoader().getResourceAsStream(ruta);
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(input)))
+         {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] datos = line.split(";");
+                Empleado e = new Empleado(datos[0], datos[1], datos[2], datos[3], Boolean.parseBoolean(datos[4]));
+                empleados.add(e);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        return empleados;
+    }
 }
