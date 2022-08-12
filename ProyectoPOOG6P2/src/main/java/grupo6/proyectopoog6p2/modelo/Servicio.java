@@ -4,6 +4,10 @@
  */
 package grupo6.proyectopoog6p2.modelo;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,6 +37,14 @@ public class Servicio {
     // setter
     public void setDuracion(int duracion) {
         this.duracion = duracion;
+    }
+    
+    public double getPrecio() {
+        return precio;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
     @Override
@@ -115,5 +127,23 @@ public class Servicio {
             }
         }
         return serviciosDisponibles;
+    }
+    
+    public static ArrayList<Servicio> cargarServicios(String ruta){
+        ArrayList<Servicio> servicios = new ArrayList<>();
+        InputStream input = Servicio.class.getClassLoader().getResourceAsStream(ruta);
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(input)))
+         {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] datos = line.split(";");
+                Servicio s = new Servicio(datos[0], Integer.parseInt(datos[1]), Double.parseDouble(datos[2]), Boolean.parseBoolean(datos[3]));
+                servicios.add(s);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        return servicios;
     }
 }
