@@ -125,7 +125,7 @@ public class Empleado extends Persona implements Serializable{
             }
             for (int j = 0; j < citasNoDisponibles.size(); j++) {
                 //Si las cédulas del empleado de lista empleado aparece en la lista de citas ocupadas, el contador aumenta.
-                if (empleados.get(i).getCedula().equals(citasNoDisponibles.get(j).getEmpleado().getCedula())) {
+                if (empleados.get(i).getCedula().equals(citasNoDisponibles.get(j).obtenerEmpleado().getCedula())) {
                     contador++;
                 }
             }

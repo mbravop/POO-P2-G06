@@ -31,16 +31,16 @@ public class Cita implements Serializable{
     
     //Getters
     
-    public Empleado getEmpleado() {
-        return empleado;
+    public String getEmpleado() {
+        return empleado.getNombre();
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getCliente() {
+        return cliente.getNombre();
     }
 
-    public Servicio getServicio() {
-        return servicio;
+    public String getServicio() {
+        return servicio.getNombreServicio();
     }
 
     public String getFecha() {
@@ -49,6 +49,16 @@ public class Cita implements Serializable{
     
     public String getHora() {
         return hora;
+    }
+    
+    public Cliente obtenerCliente(){
+        return cliente;
+    }
+    public Empleado obtenerEmpleado(){
+        return empleado;
+    }
+    public Servicio obtenerServicio(){
+        return servicio;
     }
     
     @Override

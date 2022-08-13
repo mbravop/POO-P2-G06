@@ -27,7 +27,7 @@ public class Atencion implements Serializable{
 
     @Override
     public String toString() {
-        return "Servicio: " + cita.getServicio().getNombreServicio()+" | Realizado por: "+empleado.getCedula() + " " +empleado.getNombre()+ " | Cliente: " + cita.getCliente().getCedula() + " " + cita.getCliente().getNombre() + " | Duracion: " + tiempoAtencion + " minutos.";
+        return "Servicio: " + cita.obtenerServicio().getNombreServicio()+" | Realizado por: "+empleado.getCedula() + " " +empleado.getNombre()+ " | Cliente: " + cita.obtenerCliente().getCedula() + " " + cita.obtenerCliente().getNombre() + " | Duracion: " + tiempoAtencion + " minutos.";
     }
     
     
@@ -39,7 +39,7 @@ public class Atencion implements Serializable{
         int contador = 0;
         //Se muestran las citas tienen relaciacionada una atención filtrando por medio de la cédula del cliente
         for (Cita c: citas){
-            Cliente clienteCita = c.getCliente();
+            Cliente clienteCita = c.obtenerCliente();
             String cedulaCliente = clienteCita.getCedula();
             if (cedulaCliente.equals(cedula)){
                 citaPersona.add(c);
@@ -66,7 +66,7 @@ public class Atencion implements Serializable{
             String respuesta = sc.nextLine();
             //En de caso de que sea el mismo empleado, se crea la atención con el mismo empleado
             if(respuesta.equals("S") || respuesta.equals("s")){
-                Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.getEmpleado());
+                Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.obtenerEmpleado());
                 atenciones.add(atencionRealizada);
                 System.out.println("Atención registrada exitosamente.");
             }
@@ -103,9 +103,9 @@ public class Atencion implements Serializable{
         //iterando el arreglo de atenciones para obtener los atributos de cada atención
         for(int i=0; i<atenciones.size();i++){
             Atencion atencion= atenciones.get(i);
-            String cedula= atencion.getCita().getCliente().getCedula();
+            String cedula= atencion.getCita().obtenerCliente().getCedula();
             String fecha= atencion.getCita().getFecha();
-            String cedulaEmpleado= atencion.getCita().getEmpleado().getCedula();
+            String cedulaEmpleado= atencion.getCita().obtenerEmpleado().getCedula();
             // filtrando por fecha o cédula del cliente o del empleado
             if (buscador.equals(cedula) || buscador.equals(fecha) || buscador.equals(cedulaEmpleado)){
                 atencionesBusqueda.add(atencion);

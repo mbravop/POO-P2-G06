@@ -46,20 +46,6 @@ public class MenuCitaController {
     private TextField txtFiltroCliente;
     
     public void initialize() {
-        Empleado e1 = new Empleado("02324252627", "Empleado 1", "0234423","@ubp", true);
-        
-        Cliente c1 = new Cliente("1122334455 - Mama Carlos","1234567890","Carlos Salazar","289031","@fiec");
-        
-        Servicio s1 = new Servicio("Terapia de Lenguaje",10,20.00,true);
-
-        Cita cita1 = new Cita(c1,e1,s1,"13/10/2022","10:00");
-        
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
-            out.writeObject(cita1);
-            out.flush();
-    }catch(IOException e){
-            System.out.println(e);
-    }
         colNombre.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("empleado"));
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
