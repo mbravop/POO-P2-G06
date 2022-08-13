@@ -70,7 +70,14 @@ public class MenuServicioController {
     
     @FXML
     private void editarPersona()throws IOException {
-        
+        Servicio s = (Servicio) tvListado.getSelectionModel().getSelectedItem();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
+        fxmlLoader.setController(null);
+        EditarServicioController nsc = new EditarServicioController();
+        fxmlLoader.setController(nsc);
+        Parent root = (Parent) fxmlLoader.load();
+        nsc.llenarCampos(s);
+        App.changeRoot(root);
     }
     
     @FXML

@@ -4,7 +4,7 @@
  */
 package grupo6.proyectopoog6p2;
 
-import grupo6.proyectopoog6p2.modelo.Empleado;
+import grupo6.proyectopoog6p2.modelo.Servicio;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
  *
  * @author mbravop
  */
-public class EditarEmpleadoController {
+public class EditarServicioController {
     @FXML
     private Label lblAnadirPersona;
     @FXML
@@ -51,44 +51,47 @@ public class EditarEmpleadoController {
     private Button btnGuardarAnadir;
     
     public void initialize() {
+        lblAnadirPersona.setText("Editar Servicio");
+        lblCedulaAnadir.setVisible(false);
+        txtCedulaAnadir.setVisible(false);
+        lblNombreAnadir.setText("Nombre del servicio");
+        lblTelefonoAnadir.setText("Duracion en minutos");
+        lblEmailAnadir.setText("Precio");
         lblDatosAnadir.setText("Activo? S/N");
     }
     
-    public void llenarCampos(Empleado e){
-        lblAnadirPersona.setText("Editar Empleado");
-        txtCedulaAnadir.setEditable(false);
-        txtCedulaAnadir.setText(e.getCedula());
-        txtNombreAnadir.setText(e.getNombre());
-        txtTelefonoAnadir.setText(e.getTelefono());
-        txtEmailAnadir.setText(e.getEmail());
+    public void llenarCampos(Servicio s){
+        txtNombreAnadir.setEditable(false);
+        txtNombreAnadir.setText(s.getNombreServicio());
+        txtTelefonoAnadir.setText(String.valueOf(s.getDuracion()));
+        txtEmailAnadir.setText(String.valueOf(s.getPrecio()));
         txtDatosAnadir.setEditable(false);
-        txtDatosAnadir.setText(e.getEstado()); 
-        
+        txtDatosAnadir.setText(s.getEstado()); 
     }
     
     @FXML
     public void guardarAnadir() throws IOException{
-        ArrayList<Empleado> empleados = Empleado.cargarEmpleados("grupo6/proyectopoog6p2/files/listaEmpleados.csv");
+        ArrayList<Servicio> servicios = Servicio.cargarServicios("grupo6/proyectopoog6p2/files/listaServicios.csv");
         boolean estado;
         if(txtDatosAnadir.getText().equals("S")){
             estado=true;
         }else{
             estado=false;
         }
-        Empleado empleadoNuevo = new Empleado(txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText(),estado);
-        for(Empleado e:empleados){
-            if(e.getCedula().equals(empleadoNuevo.getCedula())){
-                e.setNombre(txtNombreAnadir.getText());
-                e.setTelefono(txtTelefonoAnadir.getText());
-                e.setEmail(txtEmailAnadir.getText());
-                e.setEstado(txtDatosAnadir.getText());
+        Servicio servicioNuevo = new Servicio(txtNombreAnadir.getText(),Integer.parseInt(txtTelefonoAnadir.getText()),Double.parseDouble(txtEmailAnadir.getText()),estado);
+        for(Servicio s:servicios){
+            if(s.getNombreServicio().equals(servicioNuevo.getNombreServicio())){
+                s.setNombreServicio(txtNombreAnadir.getText());
+                s.setDuracion(Integer.parseInt(txtTelefonoAnadir.getText()));
+                s.setPrecio(Double.parseDouble(txtEmailAnadir.getText()));
+                s.setEstado(txtDatosAnadir.getText());
             }
         }
-        escribirArchivo(empleados);
+        escribirArchivo(servicios);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText("Resultado de la operación");
-        alert.setContentText("Empleado editado exitosamente");
+        alert.setContentText("Servicio editado exitosamente");
         alert.showAndWait();
         switchToMenu();
        
@@ -99,23 +102,23 @@ public class EditarEmpleadoController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
         fxmlLoader.setController(null);
         
-        MenuEmpleadoController mec = new MenuEmpleadoController();
-        fxmlLoader.setController(mec);
+        MenuServicioController msc = new MenuServicioController();
+        fxmlLoader.setController(msc);
         Parent root = (Parent) fxmlLoader.load();
         
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
         App.changeRoot(root);
     }
     
-    public void escribirArchivo(ArrayList<Empleado> empleados){
+    public void escribirArchivo(ArrayList<Servicio> servicios){
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
-            for(Empleado e:empleados){
-                escritor.write(e.toString()+"\n");
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",false));
+            for(Servicio s:servicios){
+                escritor.write(s.toString()+"\n");
             }
             escritor.close();
         }catch(IOException e){
-            System.out.println("Error editando empleado");
+            System.out.println("Error editando servicio");
         }
     }
 }

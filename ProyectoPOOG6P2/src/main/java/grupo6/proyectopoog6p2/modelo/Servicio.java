@@ -46,6 +46,32 @@ public class Servicio {
     public boolean isEstado() {
         return estado;
     }
+    
+    public String getEstado(){
+        if(estado){
+            return "S";
+        }else{
+            return "N";
+        }
+    }
+
+    public void setNombreServicio(String nombreServicio) {
+        this.nombreServicio = nombreServicio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setEstado(String s){
+        if(s.equals("S")){
+            estado=true;
+        }else{
+            estado=false;
+        }
+    }
+    
+    
 
     @Override
     public String toString() {
