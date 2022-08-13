@@ -190,8 +190,7 @@ public class Cita implements Serializable{
     public static ArrayList<Cita> cargarCitas(String ruta){
         ArrayList<Cita> citas = new ArrayList<>();
         try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
-            Cita citaEncontrada = (Cita) oi.readObject();
-            citas.add(citaEncontrada);
+            citas = (ArrayList<Cita>) oi.readObject();
         }catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");
         } catch (IOException   ex) {
