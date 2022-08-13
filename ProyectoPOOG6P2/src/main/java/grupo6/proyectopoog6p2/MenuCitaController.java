@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -55,6 +57,18 @@ public class MenuCitaController {
         llenarTabla();
     } 
     
+    @FXML
+    private void switchToMenu() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+        fxmlLoader.setController(null);
+        
+        MenuController msc = new MenuController();
+        fxmlLoader.setController(msc);
+        Parent root = (Parent) fxmlLoader.load();
+       
+        App.changeRoot(root);
+    }
+    
     public void llenarTabla(){
         tvCitas.getItems().addAll(Cita.cargarCitas("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser"));
     }
@@ -86,11 +100,6 @@ public class MenuCitaController {
 
     @FXML
     void switchToMenu(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchToPrimary(ActionEvent event) {
 
     }
 
