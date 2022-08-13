@@ -108,7 +108,7 @@ public class MenuEmpleadoController {
             }
             escritor.close();
         }catch(IOException e){
-            System.out.println("Error editando cliente");
+            System.out.println("Error eliminando empleado");
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");

@@ -4,6 +4,7 @@
  */
 package grupo6.proyectopoog6p2;
 
+import grupo6.proyectopoog6p2.modelo.Empleado;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,8 +13,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import grupo6.proyectopoog6p2.modelo.Servicio;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 
 
@@ -80,8 +85,37 @@ public class MenuServicioController {
         App.changeRoot(root);
     }
     
-    @FXML
+     @FXML
     private void eliminarPersona()throws IOException {
+        ArrayList<Servicio> servicios = Servicio.cargarServicios("grupo6/proyectopoog6p2/files/listaServicios.csv");
+        Servicio servicioSeleccionado = (Servicio) tvListado.getSelectionModel().getSelectedItem();
+        for(Servicio s:servicios){
+            if(s.getNombreServicio().equals(servicioSeleccionado.getNombreServicio())){
+                s.setEstado("N");
+            }
+        }
+        try{
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",false));
+            for(Servicio s:servicios){
+                escritor.write(s.toString()+"\n");
+            }
+            escritor.close();
+        }catch(IOException e){
+            System.out.println("Error eliminando servicio");
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText("Servicio eliminado exitosamente");
+        alert.showAndWait();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
+        fxmlLoader.setController(null);
         
+        MenuServicioController mec = new MenuServicioController();
+        fxmlLoader.setController(mec);
+        Parent root = (Parent) fxmlLoader.load();
+        
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        App.changeRoot(root);
     }
 }
