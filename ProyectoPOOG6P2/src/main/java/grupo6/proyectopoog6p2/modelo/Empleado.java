@@ -7,10 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Empleado extends Persona {
+public class Empleado extends Persona implements Serializable{
 
     private boolean estado;
 

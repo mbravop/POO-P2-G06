@@ -4,10 +4,11 @@
  */
 package grupo6.proyectopoog6p2.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Atencion {
+public class Atencion implements Serializable{
     private Cita cita;
     private int tiempoAtencion;
     private Empleado empleado;

@@ -8,9 +8,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Persona {
+public class Persona implements Serializable{
     //Atributos
     private String cedula;
     private String nombre;

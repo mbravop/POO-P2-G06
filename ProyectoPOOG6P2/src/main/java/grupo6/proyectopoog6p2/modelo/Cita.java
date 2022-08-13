@@ -4,15 +4,21 @@
  */
 package grupo6.proyectopoog6p2.modelo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cita {
+public class Cita implements Serializable{
     private String fecha;
     private String hora;
     private Empleado empleado;
     private Cliente cliente;
     private Servicio servicio;
+    private static final long serialVersionUID = 6529685098267757690L;
 
     //Constructor
     public Cita(Cliente cliente, Empleado empleado, Servicio servicio, String fecha, String hora) {
@@ -41,6 +47,9 @@ public class Cita {
         return fecha;
     }
     
+    public String getHora() {
+        return hora;
+    }
     
     @Override
     public String toString() {
@@ -168,4 +177,18 @@ public class Cita {
         return citasNoRealizadas;
     }
      
+    public static ArrayList<Cita> cargarCitas(String ruta){
+        ArrayList<Cita> citas = new ArrayList<>();
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            Cita citaEncontrada = (Cita) oi.readObject();
+            citas.add(citaEncontrada);
+        }catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        } 
+        return citas;
+}
 }

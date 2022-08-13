@@ -94,8 +94,16 @@ public class PrimaryController {
     }
 
     @FXML
-    private void iniciarCitas(){
+    private void iniciarCitas() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuCitas.fxml"));//no tiene el controlador especificado
+        fxmlLoader.setController(null);
         
+        MenuCitaController mcc = new MenuCitaController();
+        fxmlLoader.setController(mcc);
+        Parent root = (Parent) fxmlLoader.load();
+        
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        App.changeRoot(root);
     }
     @FXML
     private void iniciarAtenciones(){
