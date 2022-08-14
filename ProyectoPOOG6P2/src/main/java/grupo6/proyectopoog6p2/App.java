@@ -18,6 +18,7 @@ public class App extends Application {
     public static String pathEmpleados = "grupo6/proyectopoog6p2/files/listaEmpleados.csv";
     public static String pathServicios = "grupo6/proyectopoog6p2/files/listaServicios.csv";
     public static String pathCitas = "src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser";
+    public static String pathAtenciones = "src/main/resources/grupo6/proyectopoog6p2/files/listaAtenciones.ser";
     private static Scene scene;
     
 

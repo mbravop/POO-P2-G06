@@ -106,7 +106,16 @@ public class PrimaryController {
         App.changeRoot(root);
     }
     @FXML
-    private void iniciarAtenciones(){
+    private void iniciarAtenciones() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuAtencion.fxml"));//no tiene el controlador especificado
+        fxmlLoader.setController(null);
+        
+        MenuAtencionController mac = new MenuAtencionController();
+        fxmlLoader.setController(mac);
+        Parent root = (Parent) fxmlLoader.load();
+        
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
+        App.changeRoot(root);
         
     }
     @FXML

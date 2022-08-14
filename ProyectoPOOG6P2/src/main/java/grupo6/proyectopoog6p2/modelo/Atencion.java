@@ -4,6 +4,10 @@
  */
 package grupo6.proyectopoog6p2.modelo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,6 +16,10 @@ public class Atencion implements Serializable{
     private Cita cita;
     private int tiempoAtencion;
     private Empleado empleado;
+    public String nombreCliente;
+    public String nombreEmpleado;
+    public String nombreServicio;
+    private static final long serialVersionUID = 6529685098267757691L;
     
     //Constructor para clase Atención
     public Atencion(Cita cita, int atencion, Empleado empleado) {
@@ -23,6 +31,19 @@ public class Atencion implements Serializable{
     //Getter de la cita relacionada a la atención 
     public Cita getCita() {
         return cita;
+    }
+    
+    public String getNombreCliente(){
+        return cita.getCliente();
+    }
+    public String getNombreEmpleado(){
+        return empleado.getNombre();
+    }
+    public String getNombreServicio(){
+        return cita.getServicio();
+    }
+    public int getTiempoAtencion(){
+        return tiempoAtencion;
     }
 
     @Override
@@ -112,6 +133,20 @@ public class Atencion implements Serializable{
             }
         }
         return atencionesBusqueda;
+    }
+    
+    public static ArrayList<Atencion> cargarAtenciones(String ruta){
+        ArrayList<Atencion> atenciones = new ArrayList<>();
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            atenciones = (ArrayList<Atencion>) oi.readObject();
+        }catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        } 
+        return atenciones;
     }
 }
  

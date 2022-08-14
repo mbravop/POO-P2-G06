@@ -99,8 +99,6 @@ public class MenuCitaController {
         Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         Cita citaEliminada = null;
         
-        
-        
         for(Cita c:citas){
             if(c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())){
                 System.out.println("Iguales");
@@ -129,8 +127,15 @@ public class MenuCitaController {
     }
 
     @FXML
-    void registrarAtencion() {
-        
+    void registrarAtencion() throws IOException {
+        Cita citaRegistro = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+        fxmlLoader.setController(null);
+        NuevaAtencionController nac = new NuevaAtencionController();
+        fxmlLoader.setController(nac);
+        Parent root = (Parent) fxmlLoader.load();
+        nac.llenarCampos(citaRegistro);
+        App.changeRoot(root);
     }
 
     @FXML
