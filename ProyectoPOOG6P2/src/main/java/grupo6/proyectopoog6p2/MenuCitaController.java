@@ -69,11 +69,17 @@ public class MenuCitaController {
     
     @FXML
     void buscarCitas(){
-        
+        ArrayList<Cita> citaFiltrados = new ArrayList<>();
+        for (Cita c : Cita.cargarCitas(App.pathCitas)) {
+            if (c.obtenerCliente().getCedula().equals(txtFiltroCliente.getText())) {
+                citaFiltrados.add(c);
+            }
+        }
+        tvCitas.getItems().setAll(citaFiltrados);
     }
 
     @FXML
-    void consultarActividades(ActionEvent event) {
+    void consultarActividades() {
 
     }
 
@@ -93,18 +99,15 @@ public class MenuCitaController {
         Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         Cita citaEliminada = null;
         
+        
+        
         for(Cita c:citas){
-            Cliente cliente1 = c.obtenerCliente();
-            Cliente cliente2 = citaAEliminar.obtenerCliente();
-            if(cliente1.equals(cliente2)){ //&& c.obtenerEmpleado().equals(citaAEliminar.obtenerEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.obtenerServicio().equals(citaAEliminar.obtenerServicio())){
+            if(c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())){
                 System.out.println("Iguales");
-                //citaEliminada =c;
+                citaEliminada =c;
             }
         }
-        //citas.remove(citaEliminada);
-        
-        
-        
+        citas.remove(citaEliminada);
         
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
             out.writeObject(citas);
@@ -126,8 +129,8 @@ public class MenuCitaController {
     }
 
     @FXML
-    void registrarAtencion(ActionEvent event) {
-
+    void registrarAtencion() {
+        
     }
 
     @FXML
