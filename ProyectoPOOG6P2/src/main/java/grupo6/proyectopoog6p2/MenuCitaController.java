@@ -4,6 +4,7 @@
  */
 package grupo6.proyectopoog6p2;
 
+import grupo6.proyectopoog6p2.modelo.Atencion;
 import grupo6.proyectopoog6p2.modelo.Cita;
 import grupo6.proyectopoog6p2.modelo.Cliente;
 import grupo6.proyectopoog6p2.modelo.Empleado;
@@ -64,7 +65,9 @@ public class MenuCitaController {
     }
     
     public void llenarTabla(){
-        tvCitas.getItems().addAll(Cita.cargarCitas(App.pathCitas));
+        //ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        //ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
+        tvCitas.getItems().setAll(Cita.cargarCitas(App.pathCitas));
     }
     
     @FXML

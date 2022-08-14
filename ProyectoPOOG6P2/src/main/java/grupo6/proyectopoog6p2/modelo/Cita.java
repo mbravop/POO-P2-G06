@@ -179,7 +179,8 @@ public class Cita implements Serializable{
         ArrayList<Cita> citasNoRealizadas = new ArrayList<>();
         for(Cita c: citas){
             for(Atencion a: atenciones){
-                if(!c.equals(a.getCita())){
+                Cita citaAtencion = a.getCita();
+                if(!(c.getCliente().equals(citaAtencion.getCliente()) && c.getEmpleado().equals(citaAtencion.getEmpleado()) && c.getFecha().equals(citaAtencion.getFecha()) && c.getHora().equals(citaAtencion.getHora()) && c.getServicio().equals(citaAtencion.getServicio()))){
                     citasNoRealizadas.add(c);
                 }
             }
