@@ -58,23 +58,27 @@ public class NuevaCitaController {
     
     @FXML
     private void buscarEmpleados(){
-        ArrayList<Cita> citas= Cita.cargarCitas("");
-        ArrayList<Empleado> empleados= Empleado.cargarEmpleados("");
+        
+        ArrayList<Cita> citas= Cita.cargarCitas(App.pathCitas);
+        ArrayList<Empleado> empleados= Empleado.cargarEmpleados(App.pathEmpleados);
         String fecha= txtFecha.getText();
         String hora= txtHora.getText();
         ArrayList<Empleado> empleadosDisponibles= Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);       
         for(Empleado e: empleadosDisponibles){
              cmbEmpleados.getItems().add(e.getNombre());
-        }      
+        }     
+
     }
     
     public void initialize(){
-        ArrayList<Servicio> servicios= Servicio.cargarServicios("");
+        ArrayList<Servicio> servicios= Servicio.cargarServicios(App.pathServicios);
         ArrayList<Servicio> serviciosDisponibles= Servicio.serviciosDisponibles(servicios);
+        ArrayList<String> nombreServicios = new ArrayList<>();
         for(Servicio s: serviciosDisponibles){
-            cmbServicios.getItems().add(s.getNombreServicio());
+            nombreServicios.add(s.getNombreServicio());
         }
-      
+        
+        cmbServicios.getItems().setAll(nombreServicios);
     }
     
     @FXML
@@ -91,10 +95,10 @@ public class NuevaCitaController {
     
     @FXML
     void guardarCita() throws IOException {
-        ArrayList<Cita> citas= Cita.cargarCitas("");
-        ArrayList<Cliente> clientes= Cliente.cargarClientes("");
-        ArrayList<Empleado> empleados= Empleado.cargarEmpleados("");
-        ArrayList<Servicio> servicios= Servicio.cargarServicios("");
+        ArrayList<Cita> citas= Cita.cargarCitas(App.pathCitas);
+        ArrayList<Cliente> clientes= Cliente.cargarClientes(App.pathClientes);
+        ArrayList<Empleado> empleados= Empleado.cargarEmpleados(App.pathEmpleados);
+        ArrayList<Servicio> servicios= Servicio.cargarServicios(App.pathServicios);
         String nombreEmpleadoEscogido= cmbEmpleados.getValue();
         String cedulaClienteEscogido= txtCedula.getText();
         String servicioEscogido= cmbServicios.getValue();
@@ -122,7 +126,7 @@ public class NuevaCitaController {
         Cita citaNueva= new Cita(clienteCita,empleadoCita,servicioCita,txtFecha.getText(),txtHora.getText());
         citas.add(citaNueva);
         
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(""))){
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
             out.writeObject(citas);
             out.flush();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

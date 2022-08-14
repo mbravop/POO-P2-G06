@@ -98,7 +98,7 @@ public class EditarController {
     
     public void escribirArchivo(ArrayList<Cliente> clientes){
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",false));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",false));
             for(Cliente c:clientes){
                 escritor.write(c.toString()+"\n");
             }

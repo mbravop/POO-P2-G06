@@ -79,7 +79,7 @@ public class NuevoController {
     private void guardarAnadir() throws IOException{
         Cliente clienteNuevo = new Cliente(txtDatosAnadir.getText(),txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText());
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",true));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",true));
             escritor.write(clienteNuevo.toString()+"\n");
             escritor.flush();
             escritor.close();

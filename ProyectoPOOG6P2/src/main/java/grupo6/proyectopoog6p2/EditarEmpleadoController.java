@@ -68,7 +68,7 @@ public class EditarEmpleadoController {
     
     @FXML
     public void guardarAnadir() throws IOException{
-        ArrayList<Empleado> empleados = Empleado.cargarEmpleados("grupo6/proyectopoog6p2/files/listaEmpleados.csv");
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
         boolean estado;
         if(txtDatosAnadir.getText().equals("S")){
             estado=true;
@@ -109,7 +109,7 @@ public class EditarEmpleadoController {
     
     public void escribirArchivo(ArrayList<Empleado> empleados){
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
             for(Empleado e:empleados){
                 escritor.write(e.toString()+"\n");
             }

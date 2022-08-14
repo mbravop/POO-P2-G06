@@ -60,7 +60,7 @@ public class MenuEmpleadoController {
     }
     
     public void llenarTabla(){
-        tvListado.getItems().addAll(Empleado.cargarEmpleados("grupo6/proyectopoog6p2/files/listaEmpleados.csv"));
+        tvListado.getItems().addAll(Empleado.cargarEmpleados(App.pathEmpleados));
     }
     
     @FXML
@@ -94,7 +94,7 @@ public class MenuEmpleadoController {
     
     @FXML
     private void eliminarPersona()throws IOException {
-        ArrayList<Empleado> empleados = Empleado.cargarEmpleados("grupo6/proyectopoog6p2/files/listaEmpleados.csv");
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
         Empleado empleadoSeleccionado = (Empleado) tvListado.getSelectionModel().getSelectedItem();
         for(Empleado e:empleados){
             if(e.getCedula().equals(empleadoSeleccionado.getCedula())){
@@ -102,7 +102,7 @@ public class MenuEmpleadoController {
             }
         }
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
             for(Empleado e:empleados){
                 escritor.write(e.toString()+"\n");
             }

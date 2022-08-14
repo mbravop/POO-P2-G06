@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -58,19 +59,12 @@ public class MenuCitaController {
     } 
     
     @FXML
-    private void switchToMenu() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
-        fxmlLoader.setController(null);
-        
-        MenuController msc = new MenuController();
-        fxmlLoader.setController(msc);
-        Parent root = (Parent) fxmlLoader.load();
-       
-        App.changeRoot(root);
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
     }
     
     public void llenarTabla(){
-        tvCitas.getItems().addAll(Cita.cargarCitas("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser"));
+        tvCitas.getItems().addAll(Cita.cargarCitas(App.pathCitas));
     }
     
     @FXML
@@ -84,13 +78,38 @@ public class MenuCitaController {
     }
 
     @FXML
-    void crearCita(ActionEvent event) {
-
+    void crearCita() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
+        fxmlLoader.setController(null);
+        NuevaCitaController ncc = new NuevaCitaController();
+        fxmlLoader.setController(ncc);
+        Parent root = (Parent) fxmlLoader.load();
+        App.changeRoot(root);
     }
 
     @FXML
-    void eliminarCita(ActionEvent event) {
-
+    void eliminarCita() throws IOException{
+        ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        citas.remove(citaAEliminar);
+        
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
+            out.writeObject(citas);
+            out.flush();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("INFORMACION");
+            alert.setHeaderText("Resultado de la operación");
+            alert.setContentText("Cita eliminada exitosamente");
+            alert.showAndWait();
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        try{
+        switchToMenu();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -99,8 +118,12 @@ public class MenuCitaController {
     }
 
     @FXML
-    void switchToMenu(ActionEvent event) {
-
+    void switchToMenu() throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuCitas.fxml"));
+        fxmlLoader.setController(null);
+        MenuCitaController mcc = new MenuCitaController();
+        fxmlLoader.setController(mcc);
+        Parent root = (Parent) fxmlLoader.load();
+        App.changeRoot(root);
     }
-
 }

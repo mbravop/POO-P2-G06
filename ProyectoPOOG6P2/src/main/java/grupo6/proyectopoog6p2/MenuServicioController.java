@@ -55,7 +55,7 @@ public class MenuServicioController {
     }
     
     public void llenarTabla(){
-        tvListado.getItems().addAll(Servicio.cargarServicios("grupo6/proyectopoog6p2/files/listaServicios.csv"));
+        tvListado.getItems().addAll(Servicio.cargarServicios(App.pathServicios));
     }
     
     @FXML
@@ -87,7 +87,7 @@ public class MenuServicioController {
     
      @FXML
     private void eliminarPersona()throws IOException {
-        ArrayList<Servicio> servicios = Servicio.cargarServicios("grupo6/proyectopoog6p2/files/listaServicios.csv");
+        ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);
         Servicio servicioSeleccionado = (Servicio) tvListado.getSelectionModel().getSelectedItem();
         for(Servicio s:servicios){
             if(s.getNombreServicio().equals(servicioSeleccionado.getNombreServicio())){
@@ -95,7 +95,7 @@ public class MenuServicioController {
             }
         }
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("/Users/mbravop03/Desktop/ESPOL/Segundo Semestre/POO/Proyecto POO - Grupo 6/POO-P2-G06/ProyectoPOOG6P2/src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",false));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",false));
             for(Servicio s:servicios){
                 escritor.write(s.toString()+"\n");
             }
