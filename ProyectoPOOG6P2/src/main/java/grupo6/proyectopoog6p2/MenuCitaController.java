@@ -91,7 +91,20 @@ public class MenuCitaController {
     void eliminarCita() throws IOException{
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
-        citas.remove(citaAEliminar);
+        Cita citaEliminada = null;
+        
+        for(Cita c:citas){
+            Cliente cliente1 = c.obtenerCliente();
+            Cliente cliente2 = citaAEliminar.obtenerCliente();
+            if(cliente1.equals(cliente2)){ //&& c.obtenerEmpleado().equals(citaAEliminar.obtenerEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.obtenerServicio().equals(citaAEliminar.obtenerServicio())){
+                System.out.println("Iguales");
+                //citaEliminada =c;
+            }
+        }
+        //citas.remove(citaEliminada);
+        
+        
+        
         
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
             out.writeObject(citas);
