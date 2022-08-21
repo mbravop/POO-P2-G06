@@ -55,91 +55,105 @@ public class NuevaCitaController {
 
     @FXML
     private TextField txtHora;
-    
-    @FXML
-    private void buscarEmpleados(){
-        
-        ArrayList<Cita> citas= Cita.cargarCitas(App.pathCitas);
-        ArrayList<Empleado> empleados= Empleado.cargarEmpleados(App.pathEmpleados);
-        String fecha= txtFecha.getText();
-        String hora= txtHora.getText();
-        ArrayList<Empleado> empleadosDisponibles= Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);       
-        for(Empleado e: empleadosDisponibles){
-             cmbEmpleados.getItems().add(e.getNombre());
-        }     
 
+    @FXML
+    private void buscarEmpleados() {
+
+        ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
+        String fecha = txtFecha.getText();
+        String hora = txtHora.getText();
+        ArrayList<Empleado> empleadosDisponibles = Empleado.mostrarEmpleadosDisponibles(citas, empleados, fecha, hora);
+        if(empleadosDisponibles.size()!=0){
+            for (Empleado e : empleadosDisponibles) {
+                cmbEmpleados.getItems().add(e.getNombre());
+            }
+        }else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setContentText("No hay empleados disponibles para la fecha y hora ingresadas");
+            alerta.showAndWait();
+        }
     }
-    
-    public void initialize(){
-        ArrayList<Servicio> servicios= Servicio.cargarServicios(App.pathServicios);
-        ArrayList<Servicio> serviciosDisponibles= Servicio.serviciosDisponibles(servicios);
+
+    public void initialize() {
+        ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);
+        ArrayList<Servicio> serviciosDisponibles = Servicio.serviciosDisponibles(servicios);
         ArrayList<String> nombreServicios = new ArrayList<>();
-        for(Servicio s: serviciosDisponibles){
+        for (Servicio s : serviciosDisponibles) {
             nombreServicios.add(s.getNombreServicio());
         }
-        
+
         cmbServicios.getItems().setAll(nombreServicios);
     }
-    
+
     @FXML
     private void switchToMenu() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuCitas.fxml"));
         fxmlLoader.setController(null);
-        
+
         MenuCitaController msc = new MenuCitaController();
         fxmlLoader.setController(msc);
         Parent root = (Parent) fxmlLoader.load();
-       
+
         App.changeRoot(root);
     }
-    
+
     @FXML
     void guardarCita() throws IOException {
-        ArrayList<Cita> citas= Cita.cargarCitas(App.pathCitas);
-        ArrayList<Cliente> clientes= Cliente.cargarClientes(App.pathClientes);
-        ArrayList<Empleado> empleados= Empleado.cargarEmpleados(App.pathEmpleados);
-        ArrayList<Servicio> servicios= Servicio.cargarServicios(App.pathServicios);
-        String nombreEmpleadoEscogido= cmbEmpleados.getValue();
-        String cedulaClienteEscogido= txtCedula.getText();
-        String servicioEscogido= cmbServicios.getValue();
-        
-        Cliente clienteCita=null;
-        Empleado empleadoCita=null;
-        Servicio servicioCita=null;
-        
-        for(Cliente c: clientes){
-            if(cedulaClienteEscogido.equals(c.getCedula())){
-                clienteCita=c;
-            }
-        }
-        for(Empleado e: empleados){
-            if(nombreEmpleadoEscogido.equals(e.getNombre())){
-                empleadoCita=e;
-            }
-        }
-        for(Servicio s: servicios){
-            if(servicioEscogido.equals(s.getNombreServicio())){
-                servicioCita=s;
-            }
-        }
-        
-        Cita citaNueva= new Cita(clienteCita,empleadoCita,servicioCita,txtFecha.getText(),txtHora.getText());
-        citas.add(citaNueva);
-        
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
-            out.writeObject(citas);
-            out.flush();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("INFORMACION");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Nuevo cita agregada exitosamente");
-            alert.showAndWait();
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-        switchToMenu();
-    }
-    
-}
+        ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        ArrayList<Cliente> clientes = Cliente.cargarClientes(App.pathClientes);
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
+        ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);
+        String cedulaClienteEscogido = txtCedula.getText();
+        String servicioEscogido = cmbServicios.getValue();
 
+        Cliente clienteCita = null;
+        Empleado empleadoCita = null;
+        Servicio servicioCita = null;
+        int clienteEncontrado = 0;
+        for (Cliente c : clientes) {
+            if (cedulaClienteEscogido.equals(c.getCedula())) {
+                clienteCita = c;
+                clienteEncontrado++;
+            }
+        }
+        
+        for (Servicio s : servicios) {
+            if (servicioEscogido.equals(s.getNombreServicio())) {
+                servicioCita = s;
+            }
+        }
+        if (clienteEncontrado != 0) {
+            String nombreEmpleadoEscogido = cmbEmpleados.getValue();
+            for (Empleado e : empleados) {
+            if (nombreEmpleadoEscogido.equals(e.getNombre())) {
+                empleadoCita = e;
+                }
+            }
+            Cita citaNueva = new Cita(clienteCita, empleadoCita, servicioCita, txtFecha.getText(), txtHora.getText());
+            citas.add(citaNueva);
+
+            try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser", false))) {
+                out.writeObject(citas);
+                out.flush();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("INFORMACION");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo cita agregada exitosamente");
+                alert.showAndWait();
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+            switchToMenu();
+        }else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setContentText("No existen clientes con el número de cédula ingresado");
+            alerta.showAndWait();
+        }
+
+    }
+
+}

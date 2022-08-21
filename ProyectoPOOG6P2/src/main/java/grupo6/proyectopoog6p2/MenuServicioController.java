@@ -16,13 +16,14 @@ import grupo6.proyectopoog6p2.modelo.Servicio;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-
-
+import javafx.scene.control.ButtonType;
 
 public class MenuServicioController {
+
     @FXML
     private TableView<Servicio> tvListado;
     @FXML
@@ -33,38 +34,38 @@ public class MenuServicioController {
     private Button btnEditar;
     @FXML
     private Button btnEliminar;
-    
-    public void initialize(){
+
+    public void initialize() {
         lblLista.setText("L I S T A  D E  S E R V I C I O S");
         lblLista.autosize();
-        
+
         TableColumn<Servicio, String> colCedula = new TableColumn<>("Nombre");
         colCedula.setCellValueFactory(new PropertyValueFactory<>("nombreServicio"));
-        
+
         TableColumn<Servicio, Integer> colNombre = new TableColumn<>("Duracion");
         colNombre.setCellValueFactory(new PropertyValueFactory<>("duracion"));
-        
+
         TableColumn<Servicio, Double> colTelefono = new TableColumn<>("Precio");
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        
+
         TableColumn<Servicio, Boolean> colEstado = new TableColumn<>("Estado");
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        
-        tvListado.getColumns().addAll(colCedula,colNombre,colTelefono,colEstado);
+
+        tvListado.getColumns().addAll(colCedula, colNombre, colTelefono, colEstado);
         llenarTabla();
     }
-    
-    public void llenarTabla(){
+
+    public void llenarTabla() {
         tvListado.getItems().addAll(Servicio.cargarServicios(App.pathServicios));
     }
-    
+
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
-    
+
     @FXML
-    private void anadirPersona() throws IOException{
+    private void anadirPersona() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
         fxmlLoader.setController(null);
         NuevoServicioController nsc = new NuevoServicioController();
@@ -72,9 +73,9 @@ public class MenuServicioController {
         Parent root = (Parent) fxmlLoader.load();
         App.changeRoot(root);
     }
-    
+
     @FXML
-    private void editarPersona()throws IOException {
+    private void editarPersona() throws IOException {
         Servicio s = (Servicio) tvListado.getSelectionModel().getSelectedItem();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
         fxmlLoader.setController(null);
@@ -84,37 +85,46 @@ public class MenuServicioController {
         nsc.llenarCampos(s);
         App.changeRoot(root);
     }
-    
-     @FXML
-    private void eliminarPersona()throws IOException {
+
+    @FXML
+    private void eliminarPersona() throws IOException {
         ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);
         Servicio servicioSeleccionado = (Servicio) tvListado.getSelectionModel().getSelectedItem();
-        for(Servicio s:servicios){
-            if(s.getNombreServicio().equals(servicioSeleccionado.getNombreServicio())){
-                s.setEstado("N");
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación necesaria");
+        alert.setContentText("¿Desea eliminar el servicio seleccionado?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            for (Servicio s : servicios) {
+                if (s.getNombreServicio().equals(servicioSeleccionado.getNombreServicio())) {
+                    s.setEstado("N");
+                }
+            }
+            try {
+                BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv", false));
+                for (Servicio s : servicios) {
+                    escritor.write(s.toString() + "\n");
+                }
+                escritor.close();
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Information Dialog");
+                alert1.setHeaderText("Resultado de la operación");
+                alert1.setContentText("Servicio eliminado exitosamente");
+                alert1.showAndWait();
+            } catch (IOException e) {
+                System.out.println("Error eliminando servicio");
             }
         }
-        try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",false));
-            for(Servicio s:servicios){
-                escritor.write(s.toString()+"\n");
-            }
-            escritor.close();
-        }catch(IOException e){
-            System.out.println("Error eliminando servicio");
-        }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Resultado de la operación");
-        alert.setContentText("Servicio eliminado exitosamente");
-        alert.showAndWait();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
         fxmlLoader.setController(null);
-        
+
         MenuServicioController mec = new MenuServicioController();
         fxmlLoader.setController(mec);
         Parent root = (Parent) fxmlLoader.load();
-        
+
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
         App.changeRoot(root);
     }

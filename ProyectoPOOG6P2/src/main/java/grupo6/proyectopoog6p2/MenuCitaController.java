@@ -13,12 +13,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,7 +33,7 @@ public class MenuCitaController {
 
     @FXML
     private TableView<Cita> tvCitas;
-    
+
     @FXML
     private TableColumn<Cita, String> colFecha;
 
@@ -46,10 +48,10 @@ public class MenuCitaController {
 
     @FXML
     private TableColumn<Cita, String> colTerapista;
-   
+
     @FXML
     private TextField txtFiltroCliente;
-    
+
     public void initialize() {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("empleado"));
@@ -57,21 +59,21 @@ public class MenuCitaController {
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         llenarTabla();
-    } 
-    
+    }
+
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
-    
-    public void llenarTabla(){
+
+    public void llenarTabla() {
         //ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         //ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
         tvCitas.getItems().setAll(Cita.cargarCitas(App.pathCitas));
     }
-    
+
     @FXML
-    void buscarCitas(){
+    void buscarCitas() {
         ArrayList<Cita> citaFiltrados = new ArrayList<>();
         for (Cita c : Cita.cargarCitas(App.pathCitas)) {
             if (c.obtenerCliente().getCedula().equals(txtFiltroCliente.getText())) {
@@ -87,7 +89,7 @@ public class MenuCitaController {
     }
 
     @FXML
-    void crearCita() throws IOException{
+    void crearCita() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
         fxmlLoader.setController(null);
         NuevaCitaController ncc = new NuevaCitaController();
@@ -97,36 +99,38 @@ public class MenuCitaController {
     }
 
     @FXML
-    void eliminarCita() throws IOException{
+    void eliminarCita() throws Exception {
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         Cita citaEliminada = null;
-        
-        for(Cita c:citas){
-            if(c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())){
-                System.out.println("Iguales");
-                citaEliminada =c;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación necesaria");
+        alert.setContentText("¿Desea eliminar la cita seleccionada?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            for (Cita c : citas) {
+                if (c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())) {
+                    System.out.println("Iguales");
+                    citaEliminada = c;
+                }
+            }
+            citas.remove(citaEliminada);
+
+            try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser", false))) {
+                out.writeObject(citas);
+                out.flush();
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("INFORMACION");
+                alert1.setHeaderText("Resultado de la operación");
+                alert1.setContentText("Cita eliminada exitosamente");
+                alert1.showAndWait();
+
+            } catch (IOException e) {
+                System.out.println(e);
             }
         }
-        citas.remove(citaEliminada);
-        
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser",false))){
-            out.writeObject(citas);
-            out.flush();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("INFORMACION");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Cita eliminada exitosamente");
-            alert.showAndWait();
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-        try{
+
         switchToMenu();
-        }catch(Exception e){
-            System.out.println(e);
-        }
     }
 
     @FXML
@@ -142,7 +146,7 @@ public class MenuCitaController {
     }
 
     @FXML
-    void switchToMenu() throws Exception{
+    void switchToMenu() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuCitas.fxml"));
         fxmlLoader.setController(null);
         MenuCitaController mcc = new MenuCitaController();

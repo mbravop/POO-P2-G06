@@ -17,9 +17,11 @@ import grupo6.proyectopoog6p2.modelo.Empleado;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 
 /**
@@ -96,25 +98,34 @@ public class MenuEmpleadoController {
     private void eliminarPersona()throws IOException {
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
         Empleado empleadoSeleccionado = (Empleado) tvListado.getSelectionModel().getSelectedItem();
-        for(Empleado e:empleados){
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación necesaria");
+        alert.setContentText("¿Desea eliminar al empleado seleccionado?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            for(Empleado e:empleados){
             if(e.getCedula().equals(empleadoSeleccionado.getCedula())){
                 e.setEstado("N");
+                }
             }
-        }
-        try{
+            try{
             BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",false));
             for(Empleado e:empleados){
                 escritor.write(e.toString()+"\n");
-            }
+                }
             escritor.close();
-        }catch(IOException e){
-            System.out.println("Error eliminando empleado");
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Information Dialog");
+            alert1.setHeaderText("Resultado de la operación");
+            alert1.setContentText("Empleado eliminado exitosamente");
+            alert1.showAndWait();
+            }catch(IOException e){
+                System.out.println("Error eliminando empleado");
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Resultado de la operación");
-        alert.setContentText("Empleado eliminado exitosamente");
-        alert.showAndWait();
+        }
+        
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
         fxmlLoader.setController(null);
         
