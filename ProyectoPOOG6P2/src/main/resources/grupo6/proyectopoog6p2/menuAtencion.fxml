@@ -14,21 +14,38 @@
       <Label text="M E N U  D E  A T E N C I O N E S" />
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Label" />
-            <TextField />
+            <Label text="Cedula del cliente o fecha" />
+            <TextField fx:id="txtFiltroBusqueda" promptText="dd/mm/aaaa">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></TextField>
+            <Button mnemonicParsing="false" onAction="#buscarFiltro" text="Buscar">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#cargarNuevo" text="Cargar de nuevo">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Button>
          </children>
          <padding>
             <Insets left="30.0" />
          </padding>
       </HBox>
-      <TableView fx:id="tvAtenciones" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tvAtenciones" maxWidth="-Infinity" prefHeight="208.0" prefWidth="601.0">
         <columns>
-          <TableColumn fx:id="colCliente" prefWidth="194.0" text="Cliente" />
-          <TableColumn fx:id="colTerapeuta" prefWidth="230.0" text="Terapeuta" />
-            <TableColumn fx:id="colDuracion" prefWidth="81.0" text="Duracion" />
-            <TableColumn fx:id="colServicio" prefWidth="94.0" text="Servicio" />
+          <TableColumn fx:id="colCliente" prefWidth="107.0" text="Cliente" />
+          <TableColumn fx:id="colTerapeuta" prefWidth="157.0" text="Terapeuta" />
+            <TableColumn fx:id="colDuracion" prefWidth="127.0" text="Duracion" />
+            <TableColumn fx:id="colServicio" maxWidth="121.0" prefWidth="121.0" text="Servicio" />
+            <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="86.0" text="Fecha" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Button" />
+      <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Regresar">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></Button>
    </children>
 </VBox>

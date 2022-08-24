@@ -19,6 +19,8 @@ public class Atencion implements Serializable{
     public String nombreCliente;
     public String nombreEmpleado;
     public String nombreServicio;
+    public String fechaAtencion;
+    
     private static final long serialVersionUID = 6529685098267757691L;
     
     //Constructor para clase Atención
@@ -44,6 +46,10 @@ public class Atencion implements Serializable{
     }
     public int getTiempoAtencion(){
         return tiempoAtencion;
+    }
+    
+    public String getFechaAtencion(){
+        return cita.getFecha();
     }
 
     @Override
