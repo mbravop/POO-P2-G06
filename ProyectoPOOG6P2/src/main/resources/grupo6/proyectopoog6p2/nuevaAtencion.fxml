@@ -37,7 +37,7 @@
             <Label fx:id="lblNombreCliente" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Duracion real" GridPane.rowIndex="2" />
             <Label text="Terapista" GridPane.rowIndex="3" />
-            <TextField fx:id="txtDuracion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDuracion" maxWidth="-Infinity" prefHeight="26.0" prefWidth="165.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox fx:id="cmbEmpleados" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lblServicio" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label fx:id="lblEmpleado" text="Label" GridPane.rowIndex="4" />
@@ -46,6 +46,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToMenu" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#iniciarJuego" text="Realizar Actividad" />
             <Button mnemonicParsing="false" onAction="#registrarAtencion" text="Registrar" />
          </children>
       </HBox>

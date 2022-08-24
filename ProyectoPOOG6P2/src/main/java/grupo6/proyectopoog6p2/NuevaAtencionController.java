@@ -114,6 +114,10 @@ public class NuevaAtencionController {
         
     }
     
+    @FXML
+    void iniciarJuego() {
+        //Implementación juego
+    }
     
     void llenarCampos(Cita c){
         lblFechayHora.setText(c.getFecha()+" "+c.getHora());

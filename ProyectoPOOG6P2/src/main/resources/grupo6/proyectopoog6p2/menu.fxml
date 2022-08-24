@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="lblLista" prefHeight="46.0" prefWidth="150.0" text="L I S T A  D E  C L I E N T E S" />
-      <TableView fx:id="tvListado" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="231.0" prefWidth="326.0" />
+      <Label fx:id="lblLista" prefHeight="46.0" text="L I S T A  D E  C L I E N T E S" VBox.vgrow="ALWAYS" />
+      <TableView fx:id="tvListado" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="231.0" prefWidth="449.0" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Regresar" />

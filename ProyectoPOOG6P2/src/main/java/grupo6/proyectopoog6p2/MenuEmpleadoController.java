@@ -58,6 +58,7 @@ public class MenuEmpleadoController {
         TableColumn<Empleado, Boolean> colEstado = new TableColumn<>("Estado");
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         tvListado.getColumns().addAll(colCedula,colNombre,colTelefono,colEmail,colEstado);
+        tvListado.setColumnResizePolicy(tvListado.CONSTRAINED_RESIZE_POLICY);
         llenarTabla();
     }
     

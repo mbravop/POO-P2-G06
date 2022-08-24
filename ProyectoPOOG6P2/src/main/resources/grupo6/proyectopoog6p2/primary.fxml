@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<FlowPane id="fondoxd" fx:id="fpInicial" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo6.proyectopoog6p2.PrimaryController">
+<FlowPane id="fondoxd" fx:id="fpInicial" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo6.proyectopoog6p2.PrimaryController">
    <children>
       <VBox alignment="CENTER" prefHeight="346.0" prefWidth="424.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="174.0" text="M E N U  P R I N C I P A L" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="174.0" text="M E N U  P R I N C I P A L" />
             <GridPane alignment="CENTER" prefHeight="202.0" prefWidth="468.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

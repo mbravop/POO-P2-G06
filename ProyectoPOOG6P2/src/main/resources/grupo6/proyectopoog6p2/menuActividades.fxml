@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="A C T I V I D A D E S  R E A L I Z A D A S">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="tvActividades" maxWidth="-Infinity" prefHeight="200.0" prefWidth="465.0">
+        <columns>
+          <TableColumn prefWidth="166.0" text="Cliente" />
+          <TableColumn prefWidth="140.0" text="Fallos" />
+            <TableColumn prefWidth="158.0" text="Tiempo" />
+        </columns>
+      </TableView>
+      <Button mnemonicParsing="false" onAction="#switchToMenu" text="Regresar">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>

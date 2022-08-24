@@ -59,6 +59,7 @@ public class MenuCitaController {
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         llenarTabla();
+        tvCitas.setColumnResizePolicy(tvCitas.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML
@@ -67,9 +68,9 @@ public class MenuCitaController {
     }
 
     public void llenarTabla() {
-        //ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
-        //ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
-        tvCitas.getItems().setAll(Cita.cargarCitas(App.pathCitas));
+        ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
+        tvCitas.getItems().setAll(citas);
     }
 
     @FXML

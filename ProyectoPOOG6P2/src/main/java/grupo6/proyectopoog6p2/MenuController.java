@@ -27,6 +27,8 @@ import grupo6.proyectopoog6p2.modelo.Cliente;
  * @author mbravop
  */
 public class MenuController {
+    
+    
     @FXML
     private TableView<Cliente> tvListado;
     @FXML
@@ -37,6 +39,9 @@ public class MenuController {
     private Button btnEditar;
     @FXML
     private Button btnEliminar;
+    
+    @FXML
+    private VBox vMenu;
     /**
      * Initializes the controller class.
      */
@@ -54,6 +59,7 @@ public class MenuController {
         TableColumn<Cliente, String> colEmail = new TableColumn<>("Email");
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tvListado.getColumns().addAll(colCedula,colNombre,colTelefono,colEmail);
+        tvListado.setColumnResizePolicy(tvListado.CONSTRAINED_RESIZE_POLICY);
         llenarTabla();
      
     }

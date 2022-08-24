@@ -52,6 +52,7 @@ public class MenuServicioController {
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
         tvListado.getColumns().addAll(colCedula, colNombre, colTelefono, colEstado);
+        tvListado.setColumnResizePolicy(tvListado.CONSTRAINED_RESIZE_POLICY);
         llenarTabla();
     }
 
