@@ -6,19 +6,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 24 ago. 2022, 10:04:46
     Author     : nisan
 */
-.button{-fx-background-color:lightblue;
-    -fx-background-radius: 8;
-    -fx-font-size: 12;
-    -fx-font-family:"Times New Roman";}
+.button{
+    -fx-background-color: 
+        linear-gradient(to bottom, #67ceeb, #d5e8ed);
+    
+    -fx-background-border: black;
+    -fx-background-radius:10;
+    -fx-font-size: 15;
+    -fx-font-family:"Century";}
 .button:pressed {
     -fx-background-color:white;
-    -fx-padding: 8 15 15 15;
     
 }
 .button:hover {
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
-        #9d4024,
-        #d86e3a,
-        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c)
+    -fx-background-color:lightsteelblue;
 }
