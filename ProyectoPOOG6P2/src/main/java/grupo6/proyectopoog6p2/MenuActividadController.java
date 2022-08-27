@@ -4,7 +4,10 @@
  */
 package grupo6.proyectopoog6p2;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 
 /**
@@ -16,7 +19,14 @@ public class MenuActividadController {
     private TableView<?> tvActividades;
 
     @FXML
-    void switchToMenu() {
+    void switchToMenu() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuCitas.fxml"));
+        fxmlLoader.setController(null);
 
+        MenuCitaController msc = new MenuCitaController();
+        fxmlLoader.setController(msc);
+        Parent root = (Parent) fxmlLoader.load();
+
+        App.changeRoot(root);
     }
 }

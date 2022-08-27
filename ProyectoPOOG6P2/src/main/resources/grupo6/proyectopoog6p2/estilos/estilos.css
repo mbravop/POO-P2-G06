@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     
     -fx-background-border: black;
     -fx-background-radius:10;
-    -fx-font-size: 15;
+    -fx-font-size: 13;
     -fx-font-family:"Century";}
 .button:pressed {
     -fx-background-color:white;

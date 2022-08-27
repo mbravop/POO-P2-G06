@@ -85,8 +85,13 @@ public class MenuCitaController {
     }
 
     @FXML
-    void consultarActividades() {
-
+    void consultarActividades() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menuActividades.fxml"));
+        fxmlLoader.setController(null);
+        MenuActividadController mac = new MenuActividadController();
+        fxmlLoader.setController(mac);
+        Parent root = (Parent) fxmlLoader.load();
+        App.changeRoot(root);
     }
 
     @FXML
