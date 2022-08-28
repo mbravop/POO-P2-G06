@@ -17,8 +17,8 @@ public class Actividad {
     
     public Actividad(Cliente cliente, String actividad, String fecha, String tiempo, int fallos){
         this.cliente = cliente;
-        this.actividad=actividad;
-        this.fecha=fecha;
+        this.actividad = actividad;
+        this.fecha = fecha;
         this.tiempo = tiempo;
         this.fallos = fallos;
     }

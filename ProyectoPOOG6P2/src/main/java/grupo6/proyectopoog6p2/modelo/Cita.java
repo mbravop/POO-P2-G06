@@ -176,11 +176,21 @@ public class Cita implements Serializable{
     }
     //Metodo que retorna citas que aún no han sido atendidas, y la atención pueda ser registrada.
     public static ArrayList<Cita> citasNoAtendidas(ArrayList<Cita> citas, ArrayList<Atencion> atenciones){
+        ArrayList<Cita> citasAtendidas = new ArrayList<>();
         ArrayList<Cita> citasNoRealizadas = new ArrayList<>();
+        
         for(Cita c: citas){
             for(Atencion a: atenciones){
-                if(!((c.getCliente().equals(a.getNombreCliente()) && c.getFecha().equals(a.getCita().getFecha()) && c.getHora().equals(a.getCita().getHora()) && c.getServicio().equals(a.getCita().getServicio())))){
-                citasNoRealizadas.add(c);
+                if(((c.getCliente().equals(a.getNombreCliente()) && c.getFecha().equals(a.getCita().getFecha()) && c.getHora().equals(a.getCita().getHora()) && c.getServicio().equals(a.getCita().getServicio())))){
+                    citasAtendidas.add(c);
+                }
+            }
+        }
+        
+        for(Cita c: citas){
+            for(Cita ca: citasAtendidas){
+                if(!(c.equals(ca))){
+                    citasNoRealizadas.add(c);
                 }
             }
         }
