@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="vMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblLista" prefHeight="46.0" text="L I S T A  D E  C L I E N T E S" VBox.vgrow="ALWAYS" />
+      <TableView fx:id="tvListado" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="231.0" prefWidth="449.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Regresar" />
+            <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirPersona" text="Anadir" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editarPersona" text="Editar" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarPersona" text="Eliminar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

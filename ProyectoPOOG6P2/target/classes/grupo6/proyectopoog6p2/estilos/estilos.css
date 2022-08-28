@@ -1,0 +1,23 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24 ago. 2022, 10:04:46
+    Author     : nisan
+*/
+.button{
+    -fx-background-color: 
+        linear-gradient(to bottom, #67ceeb, #d5e8ed);
+    
+    -fx-background-border: black;
+    -fx-background-radius:10;
+    -fx-font-size: 13;
+    -fx-font-family:"Century";}
+.button:pressed {
+    -fx-background-color:white;
+    
+}
+.button:hover {
+    -fx-background-color:lightsteelblue;
+}
