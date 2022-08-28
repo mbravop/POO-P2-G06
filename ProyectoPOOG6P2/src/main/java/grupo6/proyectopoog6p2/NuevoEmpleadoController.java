@@ -57,7 +57,8 @@ public class NuevoEmpleadoController {
     
     public void initialize() {
         lblAnadirPersona.setText("Anadir Empleado");
-        lblDatosAnadir.setText("Activo? S/N");
+        lblDatosAnadir.setText("Activo?");
+        txtDatosAnadir.setPromptText("S/N");
     }
     
     

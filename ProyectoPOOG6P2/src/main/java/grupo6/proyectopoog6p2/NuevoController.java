@@ -60,6 +60,7 @@ public class NuevoController {
      */
     public void initialize() {
         // TODO
+        txtDatosAnadir.setPromptText("cedula - nombre");
     }    
     
     @FXML

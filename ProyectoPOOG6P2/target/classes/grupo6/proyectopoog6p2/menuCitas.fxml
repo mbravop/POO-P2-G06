@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefHeight="43.0" text="M E N U  D E  C I T A S" />
+      <Label prefHeight="43.0" text="C I T A S  P O R  A T E N D E R" />
       <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="600.0" spacing="15.0">
          <children>
             <Label text="Cedula del cliente:">

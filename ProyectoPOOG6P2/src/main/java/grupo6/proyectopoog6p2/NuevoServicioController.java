@@ -62,7 +62,8 @@ public class NuevoServicioController {
         lblNombreAnadir.setText("Nombre del servicio");
         lblTelefonoAnadir.setText("Duracion en minutos");
         lblEmailAnadir.setText("Precio");
-        lblDatosAnadir.setText("Activo? S/N");
+        lblDatosAnadir.setText("Activo?");
+        txtDatosAnadir.setPromptText("S/N");
     }
     
     

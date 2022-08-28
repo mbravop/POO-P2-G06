@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="N U E V A  C I T A">
@@ -37,10 +36,10 @@
             <TextField fx:id="txtCedula" GridPane.columnIndex="1" />
             <Label fx:id="lblServicio" text="Servicios " GridPane.rowIndex="1" />
             <Label fx:id="lblFecha" text="Fecha" GridPane.rowIndex="2" />
-            <TextField fx:id="txtHora" text="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtHora" promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lblHora" text="Hora" GridPane.rowIndex="3" />
             <Label fx:id="lblEmpleado" text="Empleados disponibles" GridPane.rowIndex="4" />
-            <TextField fx:id="txtFecha" text="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFecha" promptText="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <ComboBox fx:id="cmbEmpleados" prefWidth="150.0" />
