@@ -17,13 +17,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class NuevaAtencionController {
+    
+    public static Cliente cedulaClienteAtendido;
+    public static String fechaAtencion;
 
     @FXML
     private ComboBox<String> cmbEmpleados;
@@ -70,7 +77,7 @@ public class NuevaAtencionController {
         String fechaAtendida = horario[0];
         String horaAtendida = horario[1];
         String ceduCliente = infoCliente[1];
-        
+          
         for(Cliente c:clientes){
             if(c.getCedula().equals(ceduCliente)){
                 clienteAtendido = c;
@@ -115,8 +122,13 @@ public class NuevaAtencionController {
     }
     
     @FXML
-    void iniciarJuego() {
-        //Implementación juego
+    void iniciarJuego() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Bingo.fxml"));
+        fxmlLoader.setController(null);
+        BingoController bc = new BingoController();
+        fxmlLoader.setController(bc);
+        Parent root = (Parent) fxmlLoader.load();
+        App.changeRoot(root);
     }
     
     void llenarCampos(Cita c){
@@ -124,6 +136,9 @@ public class NuevaAtencionController {
         lblNombreCliente.setText(c.getCliente()+" - "+c.obtenerCliente().getCedula());
         lblServicio.setText(c.getServicio());
         lblEmpleado.setText(c.getEmpleado());
+        
+        cedulaClienteAtendido = c.obtenerCliente();
+        fechaAtencion = c.getFecha();
     }
 
     @FXML

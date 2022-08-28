@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.application.Platform;
 
 import java.io.IOException;
+import static java.lang.System.exit;
 
 /**
  * JavaFX App
@@ -19,6 +20,7 @@ public class App extends Application {
     public static String pathServicios = "grupo6/proyectopoog6p2/files/listaServicios.csv";
     public static String pathCitas = "src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser";
     public static String pathAtenciones = "src/main/resources/grupo6/proyectopoog6p2/files/listaAtenciones.ser";
+    public static String pathActividades = "src/main/resources/grupo6/proyectopoog6p2/files/listaActividades.ser";
     private static Scene scene;
     
 
@@ -27,6 +29,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         scene.getStylesheets().add(App.class.getResource("estilos/estilos.css").toExternalForm());
         stage.setScene(scene);
+        stage.setOnCloseRequest(eh -> exit(0));
         stage.show();
     }
 
