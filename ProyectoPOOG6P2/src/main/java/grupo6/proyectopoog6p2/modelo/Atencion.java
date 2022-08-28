@@ -82,7 +82,6 @@ public class Atencion implements Serializable{
             sc.nextLine();
             
             Cita citaEscogida= citaPersona.get(citaConfirmada-1);
-
             System.out.println(citaEscogida);
             System.out.print("Ingrese la duración en minutos de la atencion: ");
             int duracionAtencion= sc.nextInt();

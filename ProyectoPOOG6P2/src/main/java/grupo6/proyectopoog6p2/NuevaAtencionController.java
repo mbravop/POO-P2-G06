@@ -13,12 +13,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -117,6 +119,24 @@ public class NuevaAtencionController {
             System.out.println(e);
         }
         
+        ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+        Cita citaAEliminar = citaAtendida;
+        Cita citaEliminada = null;
+        for (Cita c : citas) {
+            if (c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())) {
+                System.out.println("Iguales");
+                citaEliminada = c;
+                }
+            citas.remove(citaEliminada);
+
+            try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser", false))) {
+                out.writeObject(citas);
+                out.flush();
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
         switchToMenu();
         
     }

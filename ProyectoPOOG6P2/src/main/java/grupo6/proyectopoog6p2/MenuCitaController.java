@@ -70,7 +70,8 @@ public class MenuCitaController {
     public void llenarTabla() {
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
-        tvCitas.getItems().addAll(citas);
+        ArrayList<Cita> citasNoRealizadas= Cita.citasNoAtendidas(citas, atenciones);
+        tvCitas.getItems().addAll(citasNoRealizadas);
     }
 
     @FXML

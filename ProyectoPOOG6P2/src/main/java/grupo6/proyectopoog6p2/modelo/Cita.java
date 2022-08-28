@@ -27,7 +27,7 @@ public class Cita implements Serializable{
         this.empleado = empleado;
         this.cliente = cliente;
         this.servicio = servicio;
-    }
+            }
     
     //Getters
     
@@ -60,7 +60,7 @@ public class Cita implements Serializable{
     public Servicio obtenerServicio(){
         return servicio;
     }
-    
+        
     @Override
     public String toString() {
         String cadena = "Fecha: " + fecha + " Hora: "+ hora + " | Empleado: " + empleado.getCedula() +" "+ empleado.getNombre() + " | Cliente: " + cliente.getCedula() + " " + cliente.getNombre() + " | Servicio: " + servicio.getNombreServicio();
@@ -178,7 +178,16 @@ public class Cita implements Serializable{
     public static ArrayList<Cita> citasNoAtendidas(ArrayList<Cita> citas, ArrayList<Atencion> atenciones){
         ArrayList<Cita> citasAtendidas = new ArrayList<>();
         ArrayList<Cita> citasNoRealizadas = new ArrayList<>();
-        
+        for(Atencion a: atenciones){
+            citasAtendidas.add(a.getCita());
+        }
+          
+        for (Cita c : citas) { 
+            if (!citasAtendidas.contains(c)) { 
+                citasNoRealizadas.add(c); 
+        } 
+    }   
+        /*
         for(Cita c: citas){
             for(Atencion a: atenciones){
                 if(((c.getCliente().equals(a.getNombreCliente()) && c.getFecha().equals(a.getCita().getFecha()) && c.getHora().equals(a.getCita().getHora()) && c.getServicio().equals(a.getCita().getServicio())))){
@@ -193,7 +202,7 @@ public class Cita implements Serializable{
                     citasNoRealizadas.add(c);
                 }
             }
-        }
+        }*/
         return citasNoRealizadas;
     }
      
