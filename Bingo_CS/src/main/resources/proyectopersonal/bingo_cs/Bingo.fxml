@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BingoBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectopersonal.bingo_cs.Bingo">
+<BorderPane fx:id="BingoBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="807.0" stylesheets="@css/estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectopersonal.bingo_cs.Bingo">
    <center>
       <GridPane fx:id="GridPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="380.0" prefWidth="668.0" BorderPane.alignment="CENTER">
         <columnConstraints>
