@@ -84,6 +84,11 @@ public class MenuEmpleadoController {
     @FXML
     private void editarPersona()throws IOException {
         Empleado e = (Empleado) tvListado.getSelectionModel().getSelectedItem();
+        if(e==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione un empleado ");
+            alerta.showAndWait();
+        }else{
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));//no tiene el controlador especificado
         fxmlLoader.setController(null);
         EditarEmpleadoController eec = new EditarEmpleadoController();
@@ -93,13 +98,18 @@ public class MenuEmpleadoController {
         Parent root = (Parent) fxmlLoader.load();
         eec.llenarCampos(e);
         App.changeRoot(root);
+        }
     }
     
     @FXML
     private void eliminarPersona()throws IOException {
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
         Empleado empleadoSeleccionado = (Empleado) tvListado.getSelectionModel().getSelectedItem();
-        
+        if(empleadoSeleccionado==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione un empleado ");
+            alerta.showAndWait();
+        }else{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmación necesaria");
         alert.setContentText("¿Desea eliminar al empleado seleccionado?");
@@ -124,8 +134,9 @@ public class MenuEmpleadoController {
             alert1.showAndWait();
             }catch(IOException e){
                 System.out.println("Error eliminando empleado");
+            }
         }
-        }
+ }
         
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));//no tiene el controlador especificado
         fxmlLoader.setController(null);

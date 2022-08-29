@@ -69,12 +69,7 @@ public class EditarEmpleadoController {
     @FXML
     public void guardarAnadir() throws IOException{
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
-        boolean estado;
-        if(txtDatosAnadir.getText().equals("S")){
-            estado=true;
-        }else{
-            estado=false;
-        }
+        boolean estado = txtDatosAnadir.getText().equals("S");
         Empleado empleadoNuevo = new Empleado(txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText(),estado);
         for(Empleado e:empleados){
             if(e.getCedula().equals(empleadoNuevo.getCedula())){

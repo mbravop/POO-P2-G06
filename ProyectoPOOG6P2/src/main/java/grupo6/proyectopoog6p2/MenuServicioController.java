@@ -78,20 +78,30 @@ public class MenuServicioController {
     @FXML
     private void editarPersona() throws IOException {
         Servicio s = (Servicio) tvListado.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
-        fxmlLoader.setController(null);
-        EditarServicioController nsc = new EditarServicioController();
-        fxmlLoader.setController(nsc);
-        Parent root = (Parent) fxmlLoader.load();
-        nsc.llenarCampos(s);
-        App.changeRoot(root);
+        if(s==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione un servicio ");
+            alerta.showAndWait();
+        }else{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));
+            fxmlLoader.setController(null);
+            EditarServicioController nsc = new EditarServicioController();
+            fxmlLoader.setController(nsc);
+            Parent root = (Parent) fxmlLoader.load();
+            nsc.llenarCampos(s);
+            App.changeRoot(root);
+        }
     }
 
     @FXML
     private void eliminarPersona() throws IOException {
         ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);
         Servicio servicioSeleccionado = (Servicio) tvListado.getSelectionModel().getSelectedItem();
-
+        if(servicioSeleccionado==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione un servicio ");
+            alerta.showAndWait();
+        }else{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmación necesaria");
         alert.setContentText("¿Desea eliminar el servicio seleccionado?");
@@ -128,5 +138,6 @@ public class MenuServicioController {
 
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios
         App.changeRoot(root);
+        }
     }
 }

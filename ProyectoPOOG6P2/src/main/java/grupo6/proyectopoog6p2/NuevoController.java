@@ -78,22 +78,34 @@ public class NuevoController {
 
     @FXML
     private void guardarAnadir() throws IOException{
-        Cliente clienteNuevo = new Cliente(txtDatosAnadir.getText(),txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText());
-        try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",true));
-            escritor.write(clienteNuevo.toString()+"\n");
-            escritor.flush();
-            escritor.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Nueva persona agregada exitosamente");
-            alert.showAndWait();
+        String datosAnadir= txtDatosAnadir.getText();
+        String cedulaAnadir= txtCedulaAnadir.getText();
+        String nombreAnadir= txtNombreAnadir.getText();
+        String telefonoAnadir= txtTelefonoAnadir.getText();
+        String emailAnadir= txtEmailAnadir.getText();
+        if((txtDatosAnadir.getText().isEmpty() || txtCedulaAnadir.getText().isEmpty() || txtNombreAnadir.getText().isEmpty() || txtTelefonoAnadir.getText().isEmpty() || txtEmailAnadir.getText().isEmpty())){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor llene todos los campos ");
+            alerta.showAndWait();
+        }else{
+            Cliente clienteNuevo = new Cliente(datosAnadir,cedulaAnadir,nombreAnadir,telefonoAnadir,emailAnadir);
+            try{
+                BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaClientes.csv",true));
+                escritor.write(clienteNuevo.toString()+"\n");
+                escritor.flush();
+                escritor.close();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                 alert.setHeaderText("Resultado de la operación");
+                 alert.setContentText("Nueva persona agregada exitosamente");
+                 alert.showAndWait();
             
         }catch (Exception e){
             e.printStackTrace();
         }
         switchToMenu();
+        }
+        
     }
 
 }

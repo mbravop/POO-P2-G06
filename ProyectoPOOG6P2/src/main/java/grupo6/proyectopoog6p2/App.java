@@ -23,10 +23,10 @@ public class App extends Application {
     public static String pathActividades = "src/main/resources/grupo6/proyectopoog6p2/files/listaActividades.ser";
     private static Scene scene;
     
-
+    
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"), 800, 640);
         scene.getStylesheets().add(App.class.getResource("estilos/estilos.css").toExternalForm());
         stage.setScene(scene);
         stage.setOnCloseRequest(eh -> exit(0));
@@ -49,5 +49,4 @@ public class App extends Application {
     static void changeRoot(Parent rootNode) {
         scene.setRoot(rootNode);
     }
-
 }

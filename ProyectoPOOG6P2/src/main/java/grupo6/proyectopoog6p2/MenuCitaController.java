@@ -109,47 +109,59 @@ public class MenuCitaController {
     void eliminarCita() throws Exception {
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         Cita citaAEliminar = (Cita) tvCitas.getSelectionModel().getSelectedItem();
-        Cita citaEliminada = null;
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmación necesaria");
-        alert.setContentText("¿Desea eliminar la cita seleccionada?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            for (Cita c : citas) {
-                if (c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())) {
-                    System.out.println("Iguales");
-                    citaEliminada = c;
+        if(citaAEliminar==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione una cita ");
+            alerta.showAndWait();
+        }else{
+            Cita citaEliminada = null;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación necesaria");
+            alert.setContentText("¿Desea eliminar la cita seleccionada?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                for (Cita c : citas) {
+                    if (c.getCliente().equals(citaAEliminar.getCliente()) && c.getEmpleado().equals(citaAEliminar.getEmpleado()) && c.getFecha().equals(citaAEliminar.getFecha()) && c.getHora().equals(citaAEliminar.getHora()) && c.getServicio().equals(citaAEliminar.getServicio())) {
+                        System.out.println("Iguales");
+                        citaEliminada = c;
+                    }
+                }
+                citas.remove(citaEliminada);
+
+                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser", false))) {
+                    out.writeObject(citas);
+                    out.flush();
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("INFORMACION");
+                    alert1.setHeaderText("Resultado de la operación");
+                    alert1.setContentText("Cita eliminada exitosamente");
+                    alert1.showAndWait();
+
+                } catch (IOException e) {
+                    System.out.println(e);
                 }
             }
-            citas.remove(citaEliminada);
 
-            try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/grupo6/proyectopoog6p2/files/listaCitas.ser", false))) {
-                out.writeObject(citas);
-                out.flush();
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setTitle("INFORMACION");
-                alert1.setHeaderText("Resultado de la operación");
-                alert1.setContentText("Cita eliminada exitosamente");
-                alert1.showAndWait();
-
-            } catch (IOException e) {
-                System.out.println(e);
-            }
+            switchToMenu();
         }
-
-        switchToMenu();
     }
 
     @FXML
     void registrarAtencion() throws IOException {
         Cita citaRegistro = (Cita) tvCitas.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
-        fxmlLoader.setController(null);
-        NuevaAtencionController nac = new NuevaAtencionController();
-        fxmlLoader.setController(nac);
-        Parent root = (Parent) fxmlLoader.load();
-        nac.llenarCampos(citaRegistro);
-        App.changeRoot(root);
+        if(citaRegistro==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione una cita ");
+            alerta.showAndWait();
+        }else{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+            fxmlLoader.setController(null);
+            NuevaAtencionController nac = new NuevaAtencionController();
+            fxmlLoader.setController(nac);
+            Parent root = (Parent) fxmlLoader.load();
+            nac.llenarCampos(citaRegistro);
+            App.changeRoot(root);
+        }
     }
 
     @FXML

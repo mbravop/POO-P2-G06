@@ -77,27 +77,32 @@ public class NuevoEmpleadoController {
 
     @FXML
     private void guardarAnadir() throws IOException{
-        boolean estado;
-        if(txtDatosAnadir.getText().equals("S")){
-            estado=true;
+        String cedulaAnadir= txtCedulaAnadir.getText();
+        String nombreAnadir= txtNombreAnadir.getText();
+        String telefonoAnadir= txtTelefonoAnadir.getText();
+        String emailAnadir= txtEmailAnadir.getText();
+        if((txtCedulaAnadir.getText().isEmpty() || txtNombreAnadir.getText().isEmpty() || txtTelefonoAnadir.getText().isEmpty() || txtEmailAnadir.getText().isEmpty())){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor llene todos los campos ");
+            alerta.showAndWait();
         }else{
-            estado=false;
-        }
-        Empleado empleadoNuevo = new Empleado(txtCedulaAnadir.getText(),txtNombreAnadir.getText(),txtTelefonoAnadir.getText(),txtEmailAnadir.getText(),estado);
-        try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",true));
-            escritor.write(empleadoNuevo.toString()+"\n");
-            escritor.flush();
-            escritor.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Nuevo empleado agregado exitosamente");
-            alert.showAndWait();
+            boolean estado = txtDatosAnadir.getText().equals("S");
+            Empleado empleadoNuevo = new Empleado(cedulaAnadir,nombreAnadir,telefonoAnadir,emailAnadir,estado);
+            try{
+                BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaEmpleados.csv",true));
+                escritor.write(empleadoNuevo.toString()+"\n");
+                escritor.flush();
+                escritor.close();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo empleado agregado exitosamente");
+                alert.showAndWait();
             
-        }catch (Exception e){
-            e.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            switchToMenu();
         }
-        switchToMenu();
     }
 }

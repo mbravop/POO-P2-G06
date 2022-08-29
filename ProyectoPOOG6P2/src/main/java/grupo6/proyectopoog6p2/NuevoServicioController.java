@@ -81,27 +81,31 @@ public class NuevoServicioController {
 
     @FXML
     private void guardarAnadir() throws IOException{
-        boolean estado;
-        if(txtDatosAnadir.getText().equals("S")){
-            estado=true;
+        String nombreAnadir= txtNombreAnadir.getText();
+        String telefonoAnadir= txtTelefonoAnadir.getText();
+        String emailAnadir= txtEmailAnadir.getText();
+        if((txtNombreAnadir.getText().isEmpty() || txtTelefonoAnadir.getText().isEmpty() || txtEmailAnadir.getText().isEmpty())){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor llene todos los campos ");
+            alerta.showAndWait();
         }else{
-            estado=false;
-        }
-        Servicio servicioNuevo = new Servicio(txtNombreAnadir.getText(),Integer.parseInt(txtTelefonoAnadir.getText()),Double.parseDouble(txtEmailAnadir.getText()),estado);
-        try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",true));
-            escritor.write(servicioNuevo.toString()+"\n");
-            escritor.flush();
-            escritor.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Nuevo servicio agregado exitosamente");
-            alert.showAndWait();
+            boolean estado = txtDatosAnadir.getText().equals("S");
+            Servicio servicioNuevo = new Servicio(nombreAnadir,Integer.parseInt(telefonoAnadir),Double.parseDouble(emailAnadir),estado);
+            try{
+                BufferedWriter escritor = new BufferedWriter(new FileWriter("src/main/resources/grupo6/proyectopoog6p2/files/listaServicios.csv",true));
+                escritor.write(servicioNuevo.toString()+"\n");
+                escritor.flush();
+                escritor.close();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo servicio agregado exitosamente");
+                alert.showAndWait();
             
-        }catch (Exception e){
-            e.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            switchToMenu();
         }
-        switchToMenu();
     }
 }

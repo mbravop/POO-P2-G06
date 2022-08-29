@@ -20,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import grupo6.proyectopoog6p2.modelo.Cliente;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -86,15 +87,22 @@ public class MenuController {
     @FXML
     private void editarPersona()throws IOException {
         Cliente c = (Cliente) tvListado.getSelectionModel().getSelectedItem();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));//no tiene el controlador especificado
-        fxmlLoader.setController(null);
-        EditarController ec = new EditarController();
+        if(c==null){
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setContentText("Por favor seleccione un cliente ");
+            alerta.showAndWait();
+        }else{
+           FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevo.fxml"));//no tiene el controlador especificado
+            fxmlLoader.setController(null);
+            EditarController ec = new EditarController();
 
-        fxmlLoader.setController(ec);//se asigna el controlador
+            fxmlLoader.setController(ec);//se asigna el controlador
 
-        VBox root = (VBox) fxmlLoader.load();
-        ec.llenarCampos(c);
-        App.changeRoot(root);
+            VBox root = (VBox) fxmlLoader.load();
+            ec.llenarCampos(c);
+            App.changeRoot(root); 
+        }
+        
     }
     @FXML
     private void eliminarPersona(){
