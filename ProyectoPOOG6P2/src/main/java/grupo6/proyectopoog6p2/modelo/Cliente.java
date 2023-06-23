@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package grupo6.proyectopoog6p2.modelo;
+import grupo6.proyectopoog6p2.Interfaces.OpcionesGeneral;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cliente extends Persona implements Serializable{
+public class Cliente extends Persona implements Serializable, OpcionesGeneral{
     //atributo
     private String datosRepresentante;
 
@@ -36,13 +37,13 @@ public class Cliente extends Persona implements Serializable{
     
 
     //Método Mostrar Clientes
-    public static void mostrarClientes(ArrayList<Cliente> clientes){
+    public static void mostrar(ArrayList<Cliente> clientes){
         for(int i=0; i < clientes.size(); i++){
             System.out.println((i+1)+". "+ clientes.get(i).toString());
         }
     }
     //Método Agregar Cliente el cual 
-    public static void agregarCliente(ArrayList<Cliente> clientes){
+    public static void agregar(ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos Cliente
         System.out.print("Ingrese la cédula del cliente: ");
@@ -62,7 +63,7 @@ public class Cliente extends Persona implements Serializable{
         clientes.add(clienteNuevo);
     }
     //Método Editar Cliente el cual actualiza los datos del cliente que se desee
-    public static void editarCliente(int indiceEditar, ArrayList<Cliente> clientes){
+    public static void editar(int indiceEditar, ArrayList<Cliente> clientes){
         Scanner sc = new Scanner(System.in);
         //Datos a cambiar
         Cliente clienteEditar = clientes.get(indiceEditar-1);
@@ -93,7 +94,7 @@ public class Cliente extends Persona implements Serializable{
         return clienteEscogido;
     }
     
-    public static ArrayList<Cliente> cargarClientes(String ruta) {
+    public static ArrayList<Cliente> cargar(String ruta) {
         ArrayList<Cliente> clientes = new ArrayList<>();
         InputStream input = Cliente.class.getClassLoader().getResourceAsStream(ruta);
 
