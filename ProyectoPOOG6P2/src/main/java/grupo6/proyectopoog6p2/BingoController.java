@@ -46,9 +46,6 @@ public class BingoController implements Initializable {
     public ArrayList<Integer> numeros;
     public int aciertos;
     public int fallos;
-    private int segundos = 0;
-    private int minutos = 0;
-    private int horas = 0;
     Thread t;
     
     
@@ -136,49 +133,8 @@ public class BingoController implements Initializable {
     AudioClip sonidoCelebracion = new AudioClip(this.getClass().getResource("/Musica/sonidoAplausos.mp3").toExternalForm());
   
 
-    public String tiempoRealizado;
-    public void iniciarTiempo(){
-        t = new Thread(){
-            @Override
-            public void run() {
-                while(!Thread.interrupted()){
-                    segundos++;
-                    if (segundos == 60){
-                        minutos ++;
-                        segundos = 0;
-                    }
-                    if (minutos == 60){
-                        horas ++;
-                        minutos = 0;
-                    }
-                    if (horas == 24){
-                        horas =0;
-                    }
-                    tiempoRealizado = "Tiempo "+(horas < 10? "0":"")+horas+":"+(minutos <10? "0":"")+minutos+":"+(segundos < 10? "0":"")+segundos;
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                        Tiempo.setText(tiempoRealizado);
-                        }
-                     });
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                        Thread.currentThread().interrupt();
-                    }
-                    
-                }
-    
-                
-           }
-           
-        };
-        t.start();   
-    }
+    public String tiempoRealizado = controlTime.iniciarTiempo(Tiempo);
 
-    
-    
     private void verificar(Label label, int x, int y) {
         Random rd= new Random();
         int indice= rd.nextInt(3)+1;
@@ -297,7 +253,7 @@ public class BingoController implements Initializable {
       
     
     private void llenarGridPane(){
-        iniciarTiempo();
+        controlTime.iniciarTiempo(Tiempo);
         
         numeros= aleatorios();
         Label00.setText(String.valueOf(numeros.get(0)));
