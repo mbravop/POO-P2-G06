@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package grupo6.proyectopoog6p2.modelo;
+import grupo6.proyectopoog6p2.Interfaces.OpcionesEmpleado;
+import grupo6.proyectopoog6p2.Interfaces.OpcionesGeneral;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Empleado extends Persona implements Serializable{
+public class Empleado extends Persona implements Serializable, OpcionesGeneral, OpcionesEmpleado{
 
     private boolean estado;
 
@@ -46,7 +48,7 @@ public class Empleado extends Persona implements Serializable{
     Método mostrarEmpleados: Recibe la lista de empleados la cual se itera para ir mostrando la información de cada uno de los empleados en forma de lista (enumerados)
     para que sea fácil escoger alguno
      */
-    public static void mostrarEmpleados(ArrayList<Empleado> empleados) {
+    public static void mostrar(ArrayList<Empleado> empleados) {
         for (int i = 0; i < empleados.size(); i++) {
             System.out.println((i + 1) + ". " + empleados.get(i).toString());
         }
@@ -54,7 +56,7 @@ public class Empleado extends Persona implements Serializable{
 
     /*Método agregarEmpleado: Recibe la lista de empleados. Empezamos pidiendole al usuario los datos del nuevo empleado que desea agregar (cédula, nombre, teléfono e email),
     finalmente creamos un objeto empleado con los datos que el usuario proporcionó y lo añadimos a la lista de empleados.  */
-    public static void agregarEmpleado(ArrayList<Empleado> empleados) {
+    public static void agregar(ArrayList<Empleado> empleados) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la cédula del empleado: ");
         String cedula = sc.nextLine();
@@ -73,7 +75,7 @@ public class Empleado extends Persona implements Serializable{
     /*Método editarEmpleado: Recibe la lista de empleados y un entero que nos servirá como índice más adelante: Empezamos tomando el empleado que el usuario seleccionó, 
     después le pedimos los datos que desea cambiar del empleado como el nombre, teléfono, email y si está activo o no, 
     finalmente procedemos a cambiar los datos del empleado escogido con los datos proporcionados por el usuario.*/
-    public static void editarEmpleado(int indiceEditar, ArrayList<Empleado> empleados) {
+    public static void editar(int indiceEditar, ArrayList<Empleado> empleados) {
         Scanner sc = new Scanner(System.in);
         Empleado empleadoEditar = empleados.get(indiceEditar - 1);
         System.out.println("Ingrese la información corregida");
@@ -98,7 +100,7 @@ public class Empleado extends Persona implements Serializable{
     }
 
     /*Método eliminarEmpleado: Recibe la lista de empleados y un entero que nos servirá como índice más adelante: Tomamos el empleados seleccionado según su índice y cambiamos su estados a "False"*/
-    public static void eliminarEmpleado(int indiceEliminar, ArrayList<Empleado> empleados) {
+    public static void eliminar(int indiceEliminar, ArrayList<Empleado> empleados) {
         Empleado empleadoEliminar = empleados.get(indiceEliminar - 1);
         empleadoEliminar.estado = false;
     }
@@ -108,7 +110,7 @@ public class Empleado extends Persona implements Serializable{
     Método mostrar empledos disponibles, retorna una lista de tipo empleado, para mostrarlo en forma de lista para que
     algún empleado sea escogido.
     */
-    public static ArrayList<Empleado> mostrarEmpleadosDisponibles(ArrayList<Cita> citas, ArrayList<Empleado> empleados, String fecha, String hora) {
+    public static ArrayList<Empleado> mostrarDisponibles(ArrayList<Cita> citas, ArrayList<Empleado> empleados, String fecha, String hora) {
         //Obtenemos la lista de citas que se realizan en una predeterminada fecha y hora (método en clase Cita)
         ArrayList<Cita> citasNoDisponibles = Cita.verificarCitaFyH(citas, fecha, hora);
         //Creación de lista donde se almacenarán los empleados que no se encuentren en la lista de citas ocupadas.
@@ -138,7 +140,7 @@ public class Empleado extends Persona implements Serializable{
         return empleadosDisponibles;
     }
 
-    public static ArrayList<Empleado> cargarEmpleados(String ruta){
+    public static ArrayList<Empleado> cargar(String ruta){
         ArrayList<Empleado> empleados = new ArrayList<>();
         InputStream input = Cliente.class.getClassLoader().getResourceAsStream(ruta);
         try(BufferedReader br = new BufferedReader(new InputStreamReader(input)))

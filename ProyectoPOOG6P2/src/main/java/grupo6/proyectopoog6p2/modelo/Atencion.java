@@ -101,7 +101,7 @@ public class Atencion implements Serializable{
             */
             else{
                 System.out.println("Empleados: ");
-                Empleado.mostrarEmpleados(empleados);
+                Empleado.mostrar(empleados);
                 System.out.print("Ingrese el número del empleado que realizó la atención: ");
                 int indiceEmpleado = sc.nextInt();
                 sc.nextLine();
