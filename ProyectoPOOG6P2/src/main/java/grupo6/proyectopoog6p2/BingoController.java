@@ -51,6 +51,10 @@ public class BingoController implements Initializable {
     private int horas = 0;
     Thread t;
     
+    private IAlert alert; // Abstracción para mostrar alertas
+    private IActividadStorage actividadStorage; // Abstracción para almacenar actividades
+    private IAudioPlayer audioPlayer; // Abstracción para reproducir audio
+    
     
     @FXML
     private BorderPane BingoBorderPane;
