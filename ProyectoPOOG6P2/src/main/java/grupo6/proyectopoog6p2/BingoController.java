@@ -55,6 +55,11 @@ public class BingoController implements Initializable {
     private IActividadStorage actividadStorage; // Abstracción para almacenar actividades
     private IAudioPlayer audioPlayer; // Abstracción para reproducir audio
     
+    private Verificacion verificacionStrategy;
+
+    public void setVerificacionStrategy(Verificacion     verificacionStrategy) {
+        this.verificacionStrategy = verificacionStrategy;
+    }
     
     @FXML
     private BorderPane BingoBorderPane;
@@ -184,6 +189,7 @@ public class BingoController implements Initializable {
     
     
     private void verificar(Label label, int x, int y) {
+        verificacionStrategy.verificar(label, x, y);
         Random rd= new Random();
         int indice= rd.nextInt(3)+1;
         try{
@@ -246,6 +252,13 @@ public class BingoController implements Initializable {
     
     public void initialize(URL url, ResourceBundle rb) {
         //llenar el gridpane
+        
+        if (label.getText().equals(numeroAzarLabel.getText()) && numeros.size() > 0) {
+        setVerificacionStrategy(new VerificacionCorrecta());
+    } else {
+        setVerificacionStrategy(new VerificacionIncorrecta());
+    }
+        
         llenarGridPane();
         sonidoFondo.setVolume(0.10);
         sonidoFondo.play();
