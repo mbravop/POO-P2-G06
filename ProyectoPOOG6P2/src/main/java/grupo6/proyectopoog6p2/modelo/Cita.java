@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cita implements Serializable{
+public class Cita implements Serializable, AtencionListener{
     private String fecha;
     private String hora;
     private Empleado empleado;
@@ -219,4 +219,9 @@ public class Cita implements Serializable{
         } 
         return citas;
 }
+
+    @Override
+    public void nuevaAtencionRegistrada(Atencion atencion) {
+        // lógica 
+    }
 }

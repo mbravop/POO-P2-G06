@@ -95,6 +95,7 @@ public class Atencion implements Serializable{
                 Atencion atencionRealizada = new Atencion(citaEscogida, duracionAtencion, citaEscogida.obtenerEmpleado());
                 atenciones.add(atencionRealizada);
                 System.out.println("Atención registrada exitosamente.");
+                EventManager.notificarObservadores(atencionRealizada);
             }
             /*En caso de ser distintos empleados, se muestran los empleados disponibles y se hace escoger el empleado que desee
             Y se crea la atención con otro empleado

@@ -1,27 +1,27 @@
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\NuevoEmpleadoController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuEmpleadoController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\NuevaCitaController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\NuevaAtencionController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\BingoController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuActividadController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuCitaController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Cita.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuServicioController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Empleado.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Actividad.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Persona.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\PrimaryController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuAtencionController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\NuevoController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\MenuAtencionesController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Cliente.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\NuevoServicioController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\App.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\SecondaryController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Servicio.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\MenuController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\EditarController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\EditarServicioController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\modelo\Atencion.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\grupo6\proyectopoog6p2\EditarEmpleadoController.java
-D:\Documentos\NetBeansProjects\Proyecto\POO-P2-G06\ProyectoPOOG6P2\src\main\java\module-info.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/App.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/NuevoServicioController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Cliente.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Cita.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/PrimaryController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuAtencionController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/EditarServicioController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/MenuAtencionesController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/EditarEmpleadoController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/SecondaryController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Persona.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuCitaController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/BingoController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Actividad.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/module-info.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuActividadController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Servicio.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuEmpleadoController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/NuevaAtencionController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Atencion.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/EditarController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/NuevaCitaController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuServicioController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/MenuController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/NuevoController.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/modelo/Empleado.java
+/Users/joelorrala/Desktop/Repositorio POO-P2-G06/POO-P2-G06/ProyectoPOOG6P2/src/main/java/grupo6/proyectopoog6p2/NuevoEmpleadoController.java
